@@ -17,8 +17,9 @@ module.exports.createChat = async (req, res, next) => {
             return res.status(201).send(chat);
         }
 
+        next(new BadRequestError());
     } catch (e) {
-        res.status(400).send(e);
+       next(e)
     }
 };
 
@@ -44,7 +45,7 @@ module.exports.getChatByUserId = async (req, res, next) => {
         }
         next(new BadRequestError());
     } catch (e) {
-        res.send(e);
+        next(e);
     }
 };
 
@@ -62,7 +63,7 @@ module.exports.getChatById = async (req, res, next) => {
         }
         next(new BadRequestError());
     } catch (e) {
-        res.send(e);
+        next(e);
     }
 };
 
@@ -84,9 +85,10 @@ module.exports.joinToChat = async (req, res, next) => {
                 });
             return res.send(chatWithOwner);
         }
-        res.status(400).send('Bad request');
+
+        next(new BadRequestError());
     } catch (e) {
-        res.status(400).send(e);
+        next(e)
     }
 };
 
@@ -109,9 +111,9 @@ module.exports.leaveChat = async (req, res, next) => {
                 });
             return res.send(chatWithOwner);
         }
-        res.status(400).send('Bad request');
+        next(new BadRequestError());
     } catch (e) {
-        res.status(400).send(e);
+        next(e)
     }
 };
 
@@ -130,9 +132,9 @@ module.exports.createMessage = async (req, res, next) => {
         if (savedMessage) {
             return res.status(201).send(savedMessage);
         }
-
+        next(new BadRequestError());
     } catch (e) {
-        res.send(e)
+        next(e)
     }
 };
 
@@ -146,9 +148,9 @@ module.exports.getMessages = async (req, res, next) => {
                 users
             })
         }
-        res.send('Chat not found or there is no message');
+        next(new BadRequestError());
     } catch (e) {
-        res.status(500).send(e)
+        next(e)
     }
 };
 
@@ -163,6 +165,6 @@ module.exports.getAllChats=async(req,res,next)=>{
         }
         next(new BadRequestError());
     } catch (e) {
-        res.send(e);
+        next(e);
     }
 }
