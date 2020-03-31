@@ -28,7 +28,9 @@ const SignUpForm = props => {
             <br/>
             <Field type="password" name="password" placeholder="Password"/>
             <br/>
-            <input name={ 'profilePicture' } type="file" multiple={ false }
+            <input name={ 'profilePicture' }
+                   type="file"
+                   multiple={ false }
                    onChange={ (event) => {
 
                      setFieldValue('profilePicture',

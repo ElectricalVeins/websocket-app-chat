@@ -22,7 +22,6 @@ const MessageList = ( props ) => {
       return chatMessages.map((msg)=>{
           for(let user of chatUsers){
               if(msg.authorId===user.id){
-                  console.log(user)
                  return msg.userLogin= user.login
               }
           }
@@ -65,7 +64,7 @@ const MessageList = ( props ) => {
 
     </div>
   );
-}
+};
 
 
 const mapDispatchToProps = dispatch => ( {

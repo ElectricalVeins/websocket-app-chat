@@ -69,7 +69,7 @@ const ListItem = ( props ) => {
 
 const mapStateToProps = ( state ) => {
   return state.chat
-}
+};
 
 const mapDispatchToProps = ( dispatch ) => ( {
   deleteNotification: ( id ) => {
