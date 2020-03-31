@@ -27,7 +27,6 @@ const HomePage = ( props ) => {
       <ChatList chatList={props.chatList}/>
       <MessagesList/>
       <NotificationList notifications={props.chat.notifications} />
-      <UserImage userLogin={'Logan'}  />
     </div>
   );
 };
