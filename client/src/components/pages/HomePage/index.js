@@ -1,15 +1,16 @@
 import React, { Component, useEffect }  from 'react';
-import ChatList                         from "../../ChatList";
-import MessagesList                     from "../../MessageList";
+import ChatList         from "../../ChatList";
+import MessagesList     from "../../MessageList";
 import AvailableChats   from "../../AvailableChats";
 import NotificationList from "../../NotificationList";
 import { connect }      from "react-redux";
 import {
   createGetNotificationSuccessAction,
   createLoadUserChatListAction
-} from "../../../redux/actions";
-import styles                           from './HomePage.module.scss'
-import { chatSocket }                   from "../../../api/ws";
+}                       from "../../../redux/actions";
+import styles           from './HomePage.module.scss'
+import { chatSocket }   from "../../../api/ws";
+import UserImage        from "../../UserImage";
 
 const HomePage = ( props ) => {
 
@@ -26,6 +27,7 @@ const HomePage = ( props ) => {
       <ChatList chatList={props.chatList}/>
       <MessagesList/>
       <NotificationList notifications={props.chat.notifications} />
+      <UserImage userLogin={'Logan'}  />
     </div>
   );
 };
