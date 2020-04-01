@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styles                         from './ChatList.module.scss'
-import ListItem                       from "../ListItem";
-import { connect }                    from "react-redux";
 import { emitJoinRoom }               from "../../api/ws/chatApi";
-import AvailableChats     from "../AvailableChats";
-import { LIST_ITEM_TYPE } from "../../constants";
+import { LIST_ITEM_TYPE }             from "../../constants";
+import ChatItem                       from "../ChatItem";
 
 
 const ChatList = ( props ) => {
@@ -19,11 +17,11 @@ const ChatList = ( props ) => {
           ? ( <li>LOADING...</li> )
           : myChatList.map( ( chat ) => {
             emitJoinRoom( chat._id );
-            return ( <ListItem key={chat._id}
-                               name={chat.name}
-                               selectedChatStyles={styles.selectedItemContainer}
+            return ( <ChatItem key={chat._id}
                                id={chat._id}
+                               name={chat.name}
                                type={LIST_ITEM_TYPE.MY_CHATS}
+                               selectedChatStyles={styles.selectedItemContainer}
                                chatItemClassName={styles.itemContainer}/> )
           } )
         }
