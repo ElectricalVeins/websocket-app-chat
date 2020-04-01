@@ -16,34 +16,17 @@ const ListItem = ( props ) => {
     chatItemClassName,
     selectedChatStyles,
     userId,
-    type,
     name, body, id, updatedAt
   } = props;
-
-  useEffect( () => {
-    if( type === LIST_ITEM_TYPE.NOTIFICATION && id) {
-      setTimeout( () => {props.deleteNotification( id )}, 3000 )
-    }
-  }, [] );
 
   const computedStyles = classNames( chatItemClassName, {
     [ selectedChatStyles ]: currentChat === id,
   } );
 
   const handleClick = ( e ) => {
-    if( type === LIST_ITEM_TYPE.MY_CHATS ) {
-      props.chatSelector( id )
-    }
-    if( type === LIST_ITEM_TYPE.ALL_CHATS ) {
       props.joinUserToChat( id, userId );
       props.chatSelector( id )
-    }
-    if( type === LIST_ITEM_TYPE.NOTIFICATION ) {
-      props.deleteNotification( id )
-    }
   };
-
-
 
   return (
     <li className={computedStyles}
@@ -72,9 +55,6 @@ const mapStateToProps = ( state ) => {
 };
 
 const mapDispatchToProps = ( dispatch ) => ( {
-  deleteNotification: ( id ) => {
-    dispatch( createDeleteNotificationAction( id ) )
-  },
   joinUserToChat: ( chatId, userId ) => {
     dispatch( createJoinUserToChatRequestAction( chatId, userId ) )
   },
