@@ -22,12 +22,8 @@ function chatReducer( state = initialState, action ) {
       };
 
     case ACTION_TYPES.LOAD_CHAT_MESSAGES_SUCCESS:
-
-      console.log( action );
-
       const { data: { messages, users } } = action;
       //=======================================
-
       const newMessagesWithAuthors = messages.map( msg => ( {
         ...msg,
         author: users.find( usr => usr._id === msg.authorId ),
@@ -35,7 +31,6 @@ function chatReducer( state = initialState, action ) {
 
       //  const chat = newState.chats[ chatId ];
       //  chat.messages = [ ...chat.messages, ...newMessagesWithAuthors ];
-
       //=======================================
       return {
         ...state,
@@ -90,6 +85,7 @@ function chatReducer( state = initialState, action ) {
         ...state,
         notifications: [ ...state.notifications, newNotif ]
       };
+
     case ACTION_TYPES.DELETE_NOTIFICATION_ACTION:
       const { messageId } = action;
 

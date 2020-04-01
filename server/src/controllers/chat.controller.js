@@ -92,6 +92,19 @@ module.exports.joinToChat = async (req, res, next) => {
     }
 };
 
+module.exports.deleteChat = async ( req, res, next) => {
+    try {
+        const result = await Chat.deleteOne( {_id:req.params.chatId} );
+
+        if( result ) {
+         return   res.send( result )
+        }
+        next( new BadRequestError() );
+    } catch ( e ) {
+        next( e )
+    }
+};
+
 module.exports.leaveChat = async (req, res, next) => {
     try {
         const {headers: {authorization: userId}, chat} = req;

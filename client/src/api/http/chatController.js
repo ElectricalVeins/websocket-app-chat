@@ -29,8 +29,14 @@ export const joinUserToChatById = ( { chatId, userId } ) =>
     },
   } );
 
-
 export const leaveChatById = ( chatId, userId ) => http.delete( `/chat/${chatId}/participants`,
+  {
+    headers: {
+      'Authorization': userId,
+    },
+  } );
+
+export const deleteChatById = ( chatId, userId ) => http.delete( `/chat/${chatId}`,
   {
     headers: {
       'Authorization': userId,

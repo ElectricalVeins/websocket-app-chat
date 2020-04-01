@@ -87,6 +87,23 @@ export const createLoadAllChatError = ( error ) => ( {
   error
 } );
 
+//delete chat action
+export const createDeleteChatAction = ( currentChat, userId ) => ( {
+  type: ACTION_TYPES.DELETE_CHAT_REQUEST,
+  currentChat,
+  userId
+} );
+
+export const createDeleteChatSuccess = ( data ) => ( {
+  type: ACTION_TYPES.DELETE_CHAT_SUCCESS,
+  data
+} );
+
+export const createDeleteChatError = ( error ) => ( {
+  type: ACTION_TYPES.DELETE_CHAT_ERROR,
+  error
+} );
+
 //leave chat action
 export const createLeaveChatRequestAction = ( currentChat, userId ) => ( {
   type: ACTION_TYPES.LEAVE_CHAT_REQUEST,

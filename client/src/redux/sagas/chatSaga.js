@@ -4,18 +4,19 @@ import {
   createLoadChatMessagesSuccessAction,
   createLoadUserChatListErrorAction,
   createLoadUserChatListSuccessAction,
-  createGetMessageErrorAction,
-  createGetMessageSuccessAction,
   createLoadAllChatSuccess,
   createLoadAllChatError,
   createLeaveChatSuccessAction,
   createLeaveChatErrorAction,
   createJoinUserToChatErrorAction,
   createJoinUserToChatSuccessAction,
-  createChatCreationSuccessAction, createChatCreationErrorAction
+  createChatCreationSuccessAction,
+  createChatCreationErrorAction,
+  createDeleteChatSuccess,
+  createDeleteChatError, createGetUserActionSuccess, createGetUserActionError
 } from '../actions';
 import {
-  createChat,
+  createChat, deleteChatById,
   getAllAvailableChats,
   getChatMessages,
   getUserChats, joinUserToChatById, leaveChatById
@@ -49,6 +50,15 @@ export function* loadAllChatsSaga() {
   }
 }
 
+
+export function* deleteChatSaga( { currentChat, userId } ) {
+  try {
+    const { data } = yield deleteChatById( currentChat, userId );
+    yield put( createDeleteChatSuccess( data ) )
+  } catch ( e ) {
+    yield put( createDeleteChatError( e ) )
+  }
+}
 
 export function* leaveChatSaga( { currentChat, userId } ) {
   try {
