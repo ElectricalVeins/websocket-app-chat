@@ -1,25 +1,26 @@
-import React, { Component, useEffect }  from 'react';
-import ChatList         from "../../ChatList";
-import MessagesList     from "../../MessageList";
-import AvailableChats   from "../../AvailableChatList";
-import NotificationList from "../../NotificationList";
-import { connect }      from "react-redux";
+import React, { Component, useEffect } from 'react';
+import ChatList                        from "../../ChatList";
+import MessagesList                    from "../../MessageList";
+import AvailableChats                  from "../../AllChatsList";
+import NotificationList                from "../../NotificationList";
+import { connect }                     from "react-redux";
 import {
   createClearChatAction,
   createGetNotificationSuccessAction,
   createLoadUserChatListAction
-}                       from "../../../redux/actions";
-import styles           from './HomePage.module.scss'
-import { chatSocket }   from "../../../api/ws";
-import UserImage        from "../../UserImage";
+}                                      from "../../../redux/actions";
+import styles                          from './HomePage.module.scss'
+import { chatSocket }                  from "../../../api/ws";
+import UserImage                       from "../../UserImage";
 
 const HomePage = ( props ) => {
 
   useEffect( () => {
     props.loadChatList( props.auth.user.id );
     chatSocket.on( 'new-message', ( message, chatId ) => {
-      props.getNotification(message, chatId)
-    } )
+      props.getNotification( message, chatId )
+    } );
+
   }, [] );
 
   const handleEscape = ( event ) => {
@@ -35,7 +36,7 @@ const HomePage = ( props ) => {
       <AvailableChats className={styles.itemContainer}/>
       <ChatList chatList={props.chatList}/>
       <MessagesList/>
-      <NotificationList notifications={props.chat.notifications} />
+      <NotificationList notifications={props.chat.notifications}/>
     </div>
   );
 };

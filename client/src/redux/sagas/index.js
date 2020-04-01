@@ -1,4 +1,4 @@
-import { takeLatest }            from 'redux-saga/effects';
+import { takeLatest,takeEvery }            from 'redux-saga/effects';
 import ACTION_TYPES              from '../actions/actionTypes.js';
 import { loginSaga, signUpSaga } from './authSaga.js';
 import {

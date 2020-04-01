@@ -15,6 +15,7 @@ const NotificationItem = ( props ) => {
     notificationItemClassName,
     name,
     body,
+    author,
     id,
   } = props;
 
@@ -33,12 +34,17 @@ const NotificationItem = ( props ) => {
         onClick={handleClick}>
       <div>
         {
-          name
+          `ChatId: ${name}`
         }
       </div>
       <div>
         {
-          body
+          `AuthorId: ${author}`
+        }
+      </div>
+      <div>
+        {
+          `Sent you: ${body}`
         }
       </div>
     </li>

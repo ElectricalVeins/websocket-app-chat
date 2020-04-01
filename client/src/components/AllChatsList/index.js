@@ -6,7 +6,7 @@ import styles                       from "../ChatList/ChatList.module.scss";
 import { LIST_ITEM_TYPE }           from "../../constants";
 import CreateChatForm               from "../forms/CreateChatForm";
 
-const AvailableChats = ( props ) => {
+const AllChatsList = ( props ) => {
 
   const { chatList:{allAvailableChats},userId } = props;
 
@@ -41,10 +41,10 @@ const mapStateToProps = ( state ) => {
     chatList: state.chatList,
     userId:state.auth.user.id
   }
-}
+};
 
 const mapDispatchToProps = ( dispatch ) => ( {
   loadAllChats: () => dispatch( createLoadAllChatRequest() )
 } );
 
-export default connect( mapStateToProps, mapDispatchToProps )( AvailableChats );
+export default connect( mapStateToProps, mapDispatchToProps )( AllChatsList );

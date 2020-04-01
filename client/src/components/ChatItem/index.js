@@ -17,7 +17,7 @@ const ChatItem = ( props ) => {
   } );
 
   const handleClick = ( e ) => {
-    props.chatSelector( id )
+    props.selectChat( id )
   };
 
   return (
@@ -39,7 +39,7 @@ const mapStateToProps = ( state ) => {
 };
 
 const mapDispatchToProps = ( dispatch ) => ( {
-  chatSelector: ( id ) => {
+  selectChat: ( id ) => {
     dispatch( createSelectChatAction( id ) )
   }
 } );

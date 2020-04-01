@@ -1,9 +1,13 @@
 import React                            from 'react';
 import { Field, Form, Formik }          from "formik";
 import { connect }                      from "react-redux";
-import { emitMessage }                  from "../../../api/ws/chatApi";
-import { createLeaveChatRequestAction } from "../../../redux/actions";
-import * as Yup                         from 'yup';
+import { emitMessage }                                          from "../../../api/ws/chatApi";
+import {
+  createClearChatAction,
+  createDeleteChatAction,
+  createLeaveChatRequestAction
+} from "../../../redux/actions";
+import * as Yup                                                 from 'yup';
 
 const MessageForm = ( props ) => {
   const { currentChat, userId } = props;

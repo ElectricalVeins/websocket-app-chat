@@ -4,7 +4,7 @@ import { connect }             from "react-redux";
 import { emitMessage }         from "../../../api/ws/chatApi";
 import {
   createChatCreationRequestAction,
-  createLeaveChatRequestAction
+  createDeleteChatRequestAction
 }                              from "../../../redux/actions";
 import * as Yup                from 'yup';
 

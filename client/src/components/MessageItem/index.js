@@ -1,21 +1,15 @@
-import React, { useEffect }   from 'react';
-import { connect }            from "react-redux";
-import {
-  createDeleteNotificationAction,
-  createJoinUserToChatRequestAction,
-  createSelectChatAction
-}                             from "../../redux/actions";
-import { emitJoinRoom }       from "../../api/ws/chatApi";
-import { joinUserToChatById } from "../../api/http/chatController";
-import classNames             from 'classnames';
-import { LIST_ITEM_TYPE }     from '../../constants'
+import React                   from 'react';
+import { connect }             from "react-redux";
+import classNames              from 'classnames';
+import PropTypes               from 'prop-types';
+import { createGetUserAction } from "../../redux/actions";
 
 const MessageItem = ( props ) => {
   const {
-    name,
+    author,
     authorId,
     body,
-    id,
+    messageId, //for upd, del
     updatedAt,
     messageClassName
   } = props;
@@ -31,7 +25,10 @@ const MessageItem = ( props ) => {
         onClick={handleClick}>
       <div>
         {
-          name || `User has left the chat. User id: ${authorId}`
+          author.login
+          ? author.login
+          : `User has left the chat.UserId: ${authorId}`
+
         }
       </div>
       <div>

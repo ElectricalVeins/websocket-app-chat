@@ -1,4 +1,4 @@
-import { put }         from 'redux-saga/effects';
+import { put } from 'redux-saga/effects';
 import {
   createLoadChatMessagesErrorAction,
   createLoadChatMessagesSuccessAction,
@@ -20,8 +20,8 @@ import {
   getAllAvailableChats,
   getChatMessages,
   getUserChats, joinUserToChatById, leaveChatById
-} from "../../api/http/chatController";
-import { emitMessage } from "../../api/ws/chatApi";
+}                      from "../../api/http/chatController";
+import { getUserById } from "../../api/http/userController";
 
 export function* loadUserChatListSaga( { values } ) {
   try {
@@ -69,21 +69,22 @@ export function* leaveChatSaga( { currentChat, userId } ) {
   }
 }
 
+
 export function* joinChatSaga( chatId, userId ) {
   try {
     const { data } = yield joinUserToChatById( chatId, userId );
     yield put( createJoinUserToChatSuccessAction( data ) )
   } catch ( e ) {
-    yield put( createJoinUserToChatErrorAction( e ))
+    yield put( createJoinUserToChatErrorAction( e ) )
   }
 }
 
-export function* createChatSaga(chatName,userId) {
+export function* createChatSaga( chatName, userId ) {
   try {
     const { data } = yield createChat( chatName, userId );
-    yield put( createChatCreationSuccessAction(data))
-  }catch ( e ) {
-    yield put( createChatCreationErrorAction( e ))
+    yield put( createChatCreationSuccessAction( data ) )
+  } catch ( e ) {
+    yield put( createChatCreationErrorAction( e ) )
   }
 }
 export function* getUserLoginSaga( {userId} ) {

@@ -16,7 +16,8 @@ const ListItem = ( props ) => {
     chatItemClassName,
     selectedChatStyles,
     userId,
-    name, body, id, updatedAt
+    name,
+    id,
   } = props;
 
   const computedStyles = classNames( chatItemClassName, {
@@ -25,7 +26,7 @@ const ListItem = ( props ) => {
 
   const handleClick = ( e ) => {
       props.joinUserToChat( id, userId );
-      props.chatSelector( id )
+      //props.selectChat( id )
   };
 
   return (
@@ -34,16 +35,6 @@ const ListItem = ( props ) => {
       <div>
         {
           name
-        }
-      </div>
-      <div>
-        {
-          body
-        }
-      </div>
-      <div>
-        {
-          updatedAt
         }
       </div>
     </li>
@@ -58,7 +49,7 @@ const mapDispatchToProps = ( dispatch ) => ( {
   joinUserToChat: ( chatId, userId ) => {
     dispatch( createJoinUserToChatRequestAction( chatId, userId ) )
   },
-  chatSelector: ( id ) => {
+  selectChat: ( id ) => {
     dispatch( createSelectChatAction( id ) )
   }
 } );
