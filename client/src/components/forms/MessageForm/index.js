@@ -22,8 +22,14 @@ const MessageForm = ( props ) => {
     formikBag.resetForm()
   };
 
+  const handleDelete = () => {
+    props.deleteChat( currentChat, userId );
+    props.clearCurrentChat()
+  };
+
   const handleLeave = () => {
-    props.leaveChat( currentChat, userId )
+    props.leaveChat( currentChat, userId );
+    props.clearCurrentChat()
   };
 
   return (
@@ -41,6 +47,7 @@ const MessageForm = ( props ) => {
 
             <button type={'submit'}>Send</button>
             <br/>
+            <button onClick={handleDelete}>Delete chat</button>
             <button onClick={handleLeave}>Leave chat</button>
           </Form>
         )
@@ -51,9 +58,10 @@ const MessageForm = ( props ) => {
 
 
 const mapDispatchToProps = dispatch => ( {
-  leaveChat: ( currentChat, userId ) => dispatch(
-    createLeaveChatRequestAction( currentChat, userId ) )
-  //sendMessage: ( message, chatId,from ) => dispatch( createSendMessageRequestAction( message, chatId,from ) ),
+  leaveChat:(currentChat, userId)=>(dispatch(createLeaveChatRequestAction(currentChat, userId))),
+  deleteChat: ( currentChat, userId ) =>
+    dispatch(createDeleteChatAction( currentChat, userId ) ),
+  clearCurrentChat:()=>(dispatch(createClearChatAction()))
 } );
 
 
