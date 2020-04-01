@@ -3,10 +3,10 @@ import _            from 'lodash';
 
 const initialState = {
   chatMessages: [],
-  chatUsers:[],
+  chatUsers: [],
   notifications: [],
   currentChat: null,
-  isFetching:false,
+  isFetching: false,
   error: null,
 };
 
@@ -22,10 +22,24 @@ function chatReducer( state = initialState, action ) {
       };
 
     case ACTION_TYPES.LOAD_CHAT_MESSAGES_SUCCESS:
-      const{data:{messages,users}}=action;
+
+      console.log( action );
+
+      const { data: { messages, users } } = action;
+      //=======================================
+
+      const newMessagesWithAuthors = messages.map( msg => ( {
+        ...msg,
+        author: users.find( usr => usr._id === msg.authorId ),
+      } ) );
+
+      //  const chat = newState.chats[ chatId ];
+      //  chat.messages = [ ...chat.messages, ...newMessagesWithAuthors ];
+
+      //=======================================
       return {
         ...state,
-        chatMessages: messages,
+        chatMessages: newMessagesWithAuthors,
         chatUsers: users,
       };
 
@@ -43,6 +57,9 @@ function chatReducer( state = initialState, action ) {
       const index = newChatMessages.findIndex( ( msg ) => msg._id === newMessage._id );
 
       if( index === -1 ) {
+
+        newMessage.author = state.chatUsers.find( usr =>
+          usr._id === newMessage.authorId );
         newChatMessages.push( newMessage );
         return {
           ...state,

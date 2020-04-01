@@ -16,19 +16,6 @@ const MessageList = ( props ) => {
   } );
 
 
-  const { chatMessages, currentChat, chatUsers } = props;
-
-  (function addUserLoginToMessage(){
-      return chatMessages.map((msg)=>{
-          for(let user of chatUsers){
-              if(msg.authorId===user.id){
-                 return msg.userLogin= user.login
-              }
-          }
-      })
-  })();
-
-
   const chatIsSelected = () => {
     return chatMessages.map( ( msg ) => ( <ListItem key={msg._id}
                                                     name={msg.userLogin}
@@ -50,16 +37,14 @@ const MessageList = ( props ) => {
           currentChat
           ? <MessageForm/>
           : null
-        }</div>
+        }
+      </div>
       <ul className={styles.container}>
-        <div className={styles.reverseOrder}>
-          {
-            currentChat
-            ? chatIsSelected()
-            : selectChat()
-          }
-        </div>
-
+        {
+          currentChat
+          ? chatIsSelected()
+          : selectChat()
+        }
       </ul>
 
     </div>
