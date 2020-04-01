@@ -1,7 +1,7 @@
 import React, { Component, useEffect }  from 'react';
 import ChatList         from "../../ChatList";
 import MessagesList     from "../../MessageList";
-import AvailableChats   from "../../AvailableChats";
+import AvailableChats   from "../../AvailableChatList";
 import NotificationList from "../../NotificationList";
 import { connect }      from "react-redux";
 import {
