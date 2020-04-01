@@ -85,7 +85,14 @@ export function* createChatSaga(chatName,userId) {
   }catch ( e ) {
     yield put( createChatCreationErrorAction( e ))
   }
-
+}
+export function* getUserLoginSaga( {userId} ) {
+  try {
+    const { data } = yield getUserById( userId );
+    yield put( createGetUserActionSuccess( data ) )
+  } catch ( e ) {
+    yield put( createGetUserActionError( e ) )
+  }
 }
 
 /*

@@ -19,4 +19,5 @@ export default function* () {
   yield takeLatest( ACTION_TYPES.DELETE_CHAT_REQUEST, deleteChatSaga );
   yield takeLatest(ACTION_TYPES.JOIN_USER_TO_CHAT_REQUEST,joinChatSaga);
   yield takeLatest(ACTION_TYPES.CREATE_CHAT_REQUEST,createChatSaga);
+  yield takeEvery(ACTION_TYPES.GET_USER_LOGIN_REQUEST,getUserLoginSaga)
 }

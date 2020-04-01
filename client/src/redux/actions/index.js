@@ -167,3 +167,23 @@ export const createChatCreationErrorAction = ( error ) => ( {
   type: ACTION_TYPES.CREATE_CHAT_ERROR,
   error
 } );
+
+//clear selected chat
+export const createClearChatAction = () => ( {
+  type: ACTION_TYPES.CLEAR_CHAT_REQUEST
+} );
+
+export const createGetUserAction = ( userId ) => ( {
+  type: ACTION_TYPES.GET_USER_LOGIN_REQUEST,
+  userId
+} );
+
+export const createGetUserActionSuccess = ( data ) => ( {
+  type: ACTION_TYPES.GET_USER_LOGIN_SUCCESS,
+  data
+} );
+
+export const createGetUserActionError = ( error ) => ( {
+  type: ACTION_TYPES.GET_USER_LOGIN_ERROR,
+  error
+} );
