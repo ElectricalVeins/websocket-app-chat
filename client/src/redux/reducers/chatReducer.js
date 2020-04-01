@@ -99,6 +99,20 @@ function chatReducer( state = initialState, action ) {
         notifications: newNotificationList
       };
 
+    case ACTION_TYPES.GET_USER_LOGIN_SUCCESS:
+      const { data } = action;
+      console.log( 'ACTION', data );
+      return { ...state };
+
+    case ACTION_TYPES.GET_USER_LOGIN_ERROR:
+      return {
+        ...state,
+        error: action.error
+      };
+
+    case ACTION_TYPES.CLEAR_CHAT_REQUEST:
+      return initialState;
+
     default:
       return state;
   }

@@ -5,6 +5,7 @@ import AvailableChats   from "../../AvailableChatList";
 import NotificationList from "../../NotificationList";
 import { connect }      from "react-redux";
 import {
+  createClearChatAction,
   createGetNotificationSuccessAction,
   createLoadUserChatListAction
 }                       from "../../../redux/actions";
@@ -21,8 +22,16 @@ const HomePage = ( props ) => {
     } )
   }, [] );
 
+  const handleEscape = ( event ) => {
+    if( event.keyCode === 27 ) {
+      props.clearCurrentChat()
+    }
+  };
+
   return (
-    <div className={styles.container}>
+    <div className={styles.container}
+         onKeyDown={handleEscape}
+         tabIndex="0">
       <AvailableChats className={styles.itemContainer}/>
       <ChatList chatList={props.chatList}/>
       <MessagesList/>
@@ -38,8 +47,9 @@ const mapStateToProps = ( state ) => {
 };
 
 const mapDispatchToProps = dispatch => ( {
-  getNotification:(message, chatId)=>{
-    dispatch( createGetNotificationSuccessAction(message, chatId))
+  clearCurrentChat: () => ( dispatch( createClearChatAction() ) ),
+  getNotification: ( message, chatId ) => {
+    dispatch( createGetNotificationSuccessAction( message, chatId ) )
   },
   loadChatList: ( data ) => {
     dispatch( createLoadUserChatListAction( data ) )
