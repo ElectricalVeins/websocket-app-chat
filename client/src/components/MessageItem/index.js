@@ -47,4 +47,18 @@ const MessageItem = ( props ) => {
 
 const mapDispatchToProps = ( dispatch ) => ( {} );
 
+MessageItem.defaultProps = {
+  author: {},
+};
+
+
+MessageItem.propTypes = {
+  author: PropTypes.object,
+  authorId: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+  messageId: PropTypes.string.isRequired,
+  updatedAt: PropTypes.string.isRequired,
+  messageClassName: PropTypes.string,
+};
+
 export default connect( null, mapDispatchToProps )( MessageItem );
