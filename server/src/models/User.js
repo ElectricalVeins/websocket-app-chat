@@ -9,7 +9,7 @@ const userSchema = new Schema({
     type: Schema.Types.String,
     required: true,
     unique: true,
-    match: /^\w{6,16}$/,
+    match: /^\w{4,16}$/,
   },
   password: {
     type: Schema.Types.String,
