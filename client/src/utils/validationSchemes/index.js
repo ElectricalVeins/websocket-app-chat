@@ -28,3 +28,11 @@ export const loginFormSchema = Yup.object().shape( {
   login: loginSchema,
   password: passwordSchema,
 } );
+
+export const messageSchema = Yup.object().shape( {
+  message: Yup.string().min( 1, 'Empty message' ).required( 'EnterMessage' )
+} );
+
+export const chatNameSchema = Yup.object().shape( {
+  name: Yup.string().min( 4, 'Chat name must contain at least 4 symbols' )
+} );

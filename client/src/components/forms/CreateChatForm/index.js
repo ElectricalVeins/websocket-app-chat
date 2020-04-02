@@ -1,19 +1,11 @@
-import React                   from 'react';
-import { Field, Form, Formik } from "formik";
-import { connect }             from "react-redux";
-import { emitMessage }         from "../../../api/ws/chatApi";
-import {
-  createChatCreationRequestAction,
-  createDeleteChatRequestAction
-}                              from "../../../redux/actions";
-import * as Yup                from 'yup';
+import React                               from 'react';
+import { Field, Form, Formik }             from "formik";
+import { connect }                         from "react-redux";
+import { createChatCreationRequestAction } from "../../../redux/actions";
+import { chatNameSchema }                  from "../../../utils/validationSchemes";
 
 const MessageForm = ( props ) => {
   const { userId } = props;
-
-  const messageSchema = Yup.object().shape( {
-    name: Yup.string().min( 4, 'Chat name must contain at least 4 symbols' )
-  } );
 
   const handleSubmit = ( { name }, formikBag ) => {
     props.createChat( name, userId );
@@ -22,7 +14,7 @@ const MessageForm = ( props ) => {
 
   return (
     <Formik onSubmit={handleSubmit}
-            validationSchema={messageSchema}
+            validationSchema={chatNameSchema}
             initialValues={{
               name: ''
             }}>

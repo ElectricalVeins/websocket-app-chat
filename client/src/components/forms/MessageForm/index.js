@@ -1,24 +1,19 @@
-import React                            from 'react';
-import { Field, Form, Formik }          from "formik";
-import { connect }                      from "react-redux";
-import { emitMessage }                                          from "../../../api/ws/chatApi";
+import React                   from 'react';
+import { Field, Form, Formik } from "formik";
+import { connect }             from "react-redux";
+import { emitMessage }         from "../../../api/ws/chatApi";
 import {
   createClearChatAction,
   createDeleteChatAction,
   createLeaveChatRequestAction
-} from "../../../redux/actions";
-import * as Yup                                                 from 'yup';
+}                              from "../../../redux/actions";
+import { messageSchema }       from "../../../utils/validationSchemes";
 
 const MessageForm = ( props ) => {
   const { currentChat, userId } = props;
 
-  const messageSchema = Yup.object().shape( {
-    message: Yup.string().min( 1, 'Empty message' ).required( 'EnterMessage' )
-  } );
-
   const handleSubmit = ( { message }, formikBag ) => {
     emitMessage( currentChat, message, userId );
-    // props.sendMessage( message, currentChat,userId )
     formikBag.resetForm()
   };
 
