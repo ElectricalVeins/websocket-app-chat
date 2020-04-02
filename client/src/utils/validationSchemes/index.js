@@ -18,10 +18,19 @@ export const signUpFormSchema = Yup.object().shape( {
   password: passwordSchema,
   profilePicture: Yup.mixed()
                      .test( "fileSize", "File too large",
-                       value => value && value.size <= FILE_SIZE )
+                       value => {
+                         if( value ) {
+                           return value && value.size <= FILE_SIZE
+                         }
+                         return true
+                       } )
                      .test( "fileFormat", "Unsupported Format",
-                       value => value && SUPPORTED_FORMATS.includes( value.type )
-                     )
+                       value => {
+                         if( value ) {
+                           value && SUPPORTED_FORMATS.includes( value.type )
+                         }
+                         return true
+                       } )
 } );
 
 export const loginFormSchema = Yup.object().shape( {
