@@ -142,7 +142,7 @@ export const createJoinUserToChatErrorAction = ( error ) => ( {
 export const createGetNotificationSuccessAction = ( message, chatId ) => ( {
   type: ACTION_TYPES.GET_NOTIFICATION_SUCCESS,
   message,
-  chatId
+  chatId,
 } );
 
 //delete notif

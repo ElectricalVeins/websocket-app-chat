@@ -8,6 +8,7 @@ const initialState = {
     chatMessages: [],
     chatUsers: [],
   },
+  notificationList: [],
   currentChat: null,
   isFetching: false,
   error: null,
@@ -205,6 +206,35 @@ function newChatReducer( state = initialState, action ) {
           chatUsers: [],
         },
         currentChat: null,
+      };
+
+    case ACTION_TYPES.GET_NOTIFICATION_SUCCESS:
+      console.log(state,action);
+      const { message, chatId } = action;
+      if( chatId === state.currentChat ) {
+        return { ...state }
+      }
+      const newNotif = {
+        message,
+        chatId
+      };
+
+      return {
+        ...state,
+        notificationList: [ ...state.notificationList, newNotif ]
+      };
+
+    case ACTION_TYPES.DELETE_NOTIFICATION_ACTION:
+      const { messageId } = action;
+
+      const newNotificationList = _.clone( state.notificationList );
+      newNotificationList.splice(
+        newNotificationList.findIndex( notif => notif.message._id === messageId ),
+        1 );
+
+      return {
+        ...state,
+        notificationList: newNotificationList
       };
 
     default:

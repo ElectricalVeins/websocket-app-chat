@@ -15,14 +15,13 @@ import UserImage                       from "../../components/UserImage";
 
 const HomePage = ( props ) => {
 
-  const {auth,notifications,chatState}=props;
+  const { auth, chatState } = props;
 
   useEffect( () => {
     props.loadChatList( auth.user.id );
     chatSocket.on( 'new-message', ( message, chatId ) => {
       props.getNotification( message, chatId )
     } );
-
   }, [] );
 
   const handleEscape = ( event ) => {
@@ -38,7 +37,7 @@ const HomePage = ( props ) => {
       <AvailableChats className={styles.itemContainer}/>
       <ChatList chatState={chatState}/>
       <MessagesList/>
-      <NotificationList notifications={notifications}/>
+      <NotificationList notifications={chatState.notificationList}/>
     </div>
   );
 };

@@ -51,14 +51,10 @@ const NotificationItem = ( props ) => {
   );
 };
 
-const mapStateToProps = ( state ) => {
-  return state.chat
-};
-
 const mapDispatchToProps = ( dispatch ) => ( {
   deleteNotification: ( id ) => {
     dispatch( createDeleteNotificationAction( id ) )
   },
 } );
 
-export default connect( mapStateToProps, mapDispatchToProps )( NotificationItem );
+export default connect( null, mapDispatchToProps )( NotificationItem );

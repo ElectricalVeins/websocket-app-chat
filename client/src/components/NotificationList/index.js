@@ -3,18 +3,18 @@ import styles           from './NotificationList.module.scss'
 import NotificationItem from "../NotificationItem";
 
 const NotificationList = ( props ) => {
-  const { notifications:{notificationList}}  = props;
+  const { notifications} = props;
 
   return (
     <ul className={styles.container}>
       {
-        notificationList
-        ? notificationList.map( ( item ) => ( <NotificationItem key={item.message._id}
-                                                             id={item.message._id}
-                                                             body={item.message.body}
-                                                             author={item.message.authorId}
-                                                             name={item.chatId}
-                                                             notificationItemClassName={styles.itemContainer}/> ) )
+        notifications
+        ? notifications.map( ( item ) => ( <NotificationItem key={item.message._id}
+                                                                id={item.message._id}
+                                                                body={item.message.body}
+                                                                author={item.message.authorId}
+                                                                name={item.chatId}
+                                                                notificationItemClassName={styles.itemContainer}/> ) )
         : null
       }
     </ul>
