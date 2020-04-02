@@ -34,7 +34,7 @@ const ChatItem = ( props ) => {
 
 const mapStateToProps = ( state ) => {
   return {
-    currentChat: state.chat.currentChat
+    currentChat: state.chatState.currentChat
   }
 };
 

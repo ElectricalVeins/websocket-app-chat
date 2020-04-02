@@ -7,7 +7,7 @@ import CreateChatForm               from "../forms/CreateChatForm";
 
 const AllChatsList = ( props ) => {
 
-  const { chatList: { allAvailableChats }, userId } = props;
+  const { chatState: { chats: { allAvailableChats } }, userId } = props;
 
   const handleClick = () => {
     props.loadAllChats()
@@ -42,7 +42,7 @@ const AllChatsList = ( props ) => {
 
 const mapStateToProps = ( state ) => {
   return {
-    chatList: state.chatList,
+    chatState: state.chatState,
     userId: state.auth.user.id
   }
 };

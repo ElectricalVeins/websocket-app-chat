@@ -63,7 +63,7 @@ const mapDispatchToProps = dispatch => ( {
 const mapStateToProps = ( state ) => {
   return {
     userId: state.auth.user.id,
-    currentChat: state.chat.currentChat
+    currentChat: state.chatState.currentChat
   }
 };
 

@@ -25,8 +25,8 @@ const ListItem = ( props ) => {
   } );
 
   const handleClick = ( e ) => {
-      props.joinUserToChat( id, userId );
-      //props.selectChat( id )
+    props.joinUserToChat( id, userId );
+    //props.selectChat( id )
   };
 
   return (
@@ -42,16 +42,18 @@ const ListItem = ( props ) => {
 };
 
 const mapStateToProps = ( state ) => {
-  return state.chat
+  return {
+    currentChat: state.chatState.currentChat
+  }
 };
 
 const mapDispatchToProps = ( dispatch ) => ( {
   joinUserToChat: ( chatId, userId ) => {
     dispatch( createJoinUserToChatRequestAction( chatId, userId ) )
   },
-  selectChat: ( id ) => {
+/*  selectChat: ( id ) => {
     dispatch( createSelectChatAction( id ) )
-  }
+  }*/
 } );
 
 export default connect( mapStateToProps, mapDispatchToProps )( ListItem );

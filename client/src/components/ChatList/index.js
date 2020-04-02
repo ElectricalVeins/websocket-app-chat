@@ -6,7 +6,7 @@ import ChatItem                       from "../ChatItem";
 
 const ChatList = ( props ) => {
 
-  const { chatList: { myChatList, isFetching, error } } = props;
+  const { chatState: { chats: { myChatList }, isFetching, error } } = props;
 
   return (
     <div className={styles.container}>

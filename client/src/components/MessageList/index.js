@@ -9,9 +9,11 @@ import MessageItem                                            from "../MessageIt
 
 const MessageList = ( props ) => {
   const {
-    chatMessages,
+    chats: {
+      chatMessages,
+      chatUsers
+    },
     currentChat,
-    chatUsers
   } = props;
 
   useEffect( () => {
@@ -64,7 +66,7 @@ const mapDispatchToProps = dispatch => ( {
 } );
 
 const mapStateToProps = state => {
-  return state.chat;
+  return state.chatState;
 };
 
 export default connect( mapStateToProps, mapDispatchToProps )( MessageList );
