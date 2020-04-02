@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import authReducer         from './authReducer.js';
-import newChatReducer      from "./newChatReducer";
+import authReducer from './authReducer.js';
+import chatReducer from "./chatReducer";
 
 export default combineReducers( {
   auth: authReducer,
-  chatState: newChatReducer,
+  chatState: chatReducer,
 } );

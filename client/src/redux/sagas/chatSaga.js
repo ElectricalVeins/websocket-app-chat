@@ -95,15 +95,3 @@ export function* getUserLoginSaga( {userId} ) {
     yield put( createGetUserActionError( e ) )
   }
 }
-
-/*
-
- export function* getMessageSaga(data) {
- try {
- yield put( createGetMessageSuccessAction( data ) )
- } catch ( e ) {
- yield put( createGetMessageErrorAction( e ) )
- }
- }
-
- */

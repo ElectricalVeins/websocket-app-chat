@@ -14,7 +14,7 @@ const initialState = {
   error: null,
 };
 
-function newChatReducer( state = initialState, action ) {
+function chatReducer( state = initialState, action ) {
 
   switch ( action.type ) {
     case ACTION_TYPES.CREATE_CHAT_SUCCESS:
@@ -242,4 +242,4 @@ function newChatReducer( state = initialState, action ) {
   }
 }
 
-export default newChatReducer;
+export default chatReducer;
