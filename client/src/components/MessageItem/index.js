@@ -3,6 +3,7 @@ import { connect }             from "react-redux";
 import classNames              from 'classnames';
 import PropTypes               from 'prop-types';
 import { createGetUserAction } from "../../redux/actions";
+import UserImage               from "../UserImage";
 
 const MessageItem = ( props ) => {
   const {
@@ -23,23 +24,26 @@ const MessageItem = ( props ) => {
   return (
     <li className={computedStyles}
         onClick={handleClick}>
+      <UserImage userLogin={messageId}/>
       <div>
-        {
-          author.login
-          ? author.login
-          : `User has left the chat.UserId: ${authorId}`
+        <div>
+          {
+            author.login
+            ? author.login
+            : `User has left the chat.UserId: ${authorId}`
 
-        }
-      </div>
-      <div>
-        {
-          body
-        }
-      </div>
-      <div>
-        {
-          updatedAt
-        }
+          }
+        </div>
+        <div>
+          {
+            body
+          }
+        </div>
+        <div>
+          {
+            updatedAt
+          }
+        </div>
       </div>
     </li>
   );
