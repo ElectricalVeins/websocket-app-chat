@@ -1,6 +1,7 @@
-export const LIST_ITEM_TYPE={
-  NOTIFICATION:'NOTIFICATION',
-  ALL_CHATS:'ALL_CHATS',
-  MY_CHATS:'MY_CHATS',
-  MESSAGE_LIST:'MESSAGE_LIST',
-}
+export const SUPPORTED_FORMATS = [
+  "image/jpg",
+  "image/jpeg",
+  "image/gif",
+  "image/png" ];
+
+export const FILE_SIZE = 2048 * 1024; //2048kb
