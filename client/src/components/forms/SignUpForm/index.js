@@ -1,8 +1,8 @@
 import React                         from 'react';
 import { Formik, Form, Field }       from 'formik';
 import { createSignUpRequestAction } from '../../../redux/actions';
-import { connect }                   from 'react-redux';
-import { SignUpSchema }              from "../../../utils/validationSchemes";
+import { connect }          from 'react-redux';
+import { signUpFormSchema } from "../../../utils/validationSchemes";
 
 
 const SignUpForm = props => {
@@ -25,7 +25,7 @@ const SignUpForm = props => {
               profilePicture: '',
             }}
             validateOnBlur={true}
-            validationSchema={SignUpSchema}>
+            validationSchema={signUpFormSchema}>
       {
         ( { errors, touched, setFieldValue, ...rest } ) => (
           <Form encType="multipart/form-data">
