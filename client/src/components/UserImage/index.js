@@ -2,7 +2,7 @@ import React  from 'react';
 import styles from './UserImage.module.scss'
 
 const UserImage = ( props ) => {
-  const { imageSrc, classes, userLogin } = props;
+  const { imageSrc, className, userLogin } = props;
 
   const stringToColour = function ( str ) {
     let hash = 0;

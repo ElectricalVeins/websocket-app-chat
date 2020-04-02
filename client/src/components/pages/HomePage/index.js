@@ -42,7 +42,6 @@ const HomePage = ( props ) => {
 };
 
 const mapStateToProps = ( state ) => {
-  // const { chatList, loadChatList, auth } = state;
   console.log( 'Current State=', state );
   return state;
 };
