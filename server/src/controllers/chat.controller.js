@@ -73,20 +73,22 @@ module.exports.joinToChat = async (req, res, next) => {
 
         chat.users.addToSet(userId);
         const savedChat = await chat.save();
-        if (savedChat) {
-            const chatWithOwner = await Chat.findOne(chat,{
-                messages:0
-            })
-                .populate('owner', {
-                    login: 1,
-                })
-                .populate('users', {
-                    login: 1,
-                });
-            return res.send(chatWithOwner);
+        if( savedChat ) {
+            const chatWithOwner = await Chat.findOne( chat, {
+                messages: 0
+            } )
+                                            .populate( 'owner', {
+                                                login: 1,
+                                            } )
+                                            .populate( 'users', {
+                                                login: 1,
+                                            } );
+            if( chatWithOwner === null ) {
+                return res.status( 409 ).send( 'User is already in chat' )
+            }
+            return res.send( chatWithOwner );
         }
-
-        next(new BadRequestError());
+        next( new BadRequestError() );
     } catch (e) {
         next(e)
     }
