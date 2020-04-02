@@ -3,9 +3,9 @@ import { Route } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 
-const SignUpPage = lazy(() => import('./pages/SignUpPage'));
-const LoginPage = lazy(() => import('./pages/LoginPage'));
-const HomePage = lazy(() => import('./pages/HomePage'));
+const SignUpPage = lazy(() => import('../pages/SignUpPage'));
+const LoginPage = lazy(() => import('../pages/LoginPage'));
+const HomePage = lazy(() => import('../pages/HomePage'));
 
 function App () {
   return (

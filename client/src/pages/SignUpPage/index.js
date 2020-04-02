@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import SignUpForm from '../../forms/SignUpForm';
-import styles from './SignUpPage.module.scss'
+import { Link }   from 'react-router-dom';
+import SignUpForm from '../../components/forms/SignUpForm';
+import styles     from './SignUpPage.module.scss'
 
 const SignUpPage = (props) => {
 
