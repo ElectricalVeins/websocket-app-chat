@@ -22,7 +22,7 @@ const UserImage = ( props ) => {
       <div style={{ backgroundColor: stringToColour( userLogin ) }}
            className={styles.backUpStyles}>
         {
-          Array.from( userLogin )[ 0 ]
+          Array.from( userLogin )[ 1 ]
         }
       </div>
     )
