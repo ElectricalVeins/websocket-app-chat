@@ -1,9 +1,9 @@
-import React                   from 'react';
-import { connect }             from "react-redux";
-import classNames              from 'classnames';
-import PropTypes               from 'prop-types';
-import { createGetUserAction } from "../../redux/actions";
-import UserImage               from "../UserImage";
+import React       from 'react';
+import { connect } from "react-redux";
+import classNames  from 'classnames';
+import PropTypes   from 'prop-types';
+import moment      from 'moment';
+import UserImage   from "../UserImage";
 
 const MessageItem = ( props ) => {
   const {
@@ -25,7 +25,7 @@ const MessageItem = ( props ) => {
   return (
     <li className={computedStyles}
         onClick={handleClick}>
-      <UserImage userLogin={body}  imageSrc={author.profilePicture}/>
+      <UserImage userLogin={body} imageSrc={author.profilePicture}/>
       <div>
         <div>
           {
@@ -42,7 +42,7 @@ const MessageItem = ( props ) => {
         </div>
         <div>
           {
-            updatedAt
+            moment(updatedAt).format('HH:mm:ss')
           }
         </div>
       </div>
