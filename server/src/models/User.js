@@ -14,9 +14,6 @@ const userSchema = new Schema( {
   password: {
     type: Schema.Types.String,
     required: true,
-    /*
-     select: false,
-     */
   },
   profilePicture: {
     type: Schema.Types.String,
@@ -24,6 +21,7 @@ const userSchema = new Schema( {
       if( value ) {
         return `${PROFILE_PICTURE_PATH}/${value}`
       }
+      return undefined
     }
 
   },

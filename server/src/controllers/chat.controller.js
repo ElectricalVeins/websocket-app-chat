@@ -51,8 +51,10 @@ module.exports.getChatByUserId = async ( req, res, next ) => {
 
 module.exports.getChatById = async ( req, res, next ) => {
   try {
-    const chat = await Chat.findById( req.params.chatId )
-                           .populate( 'users', {
+    const chat = await Chat.findById( req.params.chatId ).populate( 'messages.authorId', {
+      chats: 0
+    } );
+                          /* .populate( 'users', {
                              chats: 0,
                              password:0,
                              _v:0,
@@ -60,7 +62,7 @@ module.exports.getChatById = async ( req, res, next ) => {
                            .populate( 'owner', {
                              chats: 0,password:0,
                              _v:0,
-                           } );
+                           } );*/
     if( chat ) {
       return res.send( chat );
     }

@@ -10,6 +10,7 @@ const userRef = {
 const messageSchema = new Schema({
     authorId: {
         type: Schema.Types.ObjectId,
+        ref: 'User',
         required: true,
     },
     body: {
@@ -17,8 +18,6 @@ const messageSchema = new Schema({
         default: '',
     },
     files: [Schema.Types.String],
-    createdAt: Schema.Types.Date,
-    updatedAt: Schema.Types.Date,
 }, {
     timestamps: true,
 });
@@ -37,8 +36,6 @@ const chatSchema = new Schema({
         userRef
     ],
     messages: [messageSchema],
-    createdAt: Schema.Types.Date,
-    updatedAt: Schema.Types.Date,
 }, {
     timestamps: true,
 });
