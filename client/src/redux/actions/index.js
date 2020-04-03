@@ -187,3 +187,13 @@ export const createGetUserActionError = ( error ) => ( {
   type: ACTION_TYPES.GET_USER_LOGIN_ERROR,
   error
 } );
+
+
+export const createToggleMenuAction=()=>({
+  type: ACTION_TYPES.TOGGLE_MENU_ACTION
+});
+
+export const createCloseMenuAction=()=>({
+  type:  ACTION_TYPES.CLOSE_MENU_ACTION
+});
+
