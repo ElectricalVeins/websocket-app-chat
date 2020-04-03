@@ -25,13 +25,13 @@ const MessageItem = ( props ) => {
   return (
     <li className={computedStyles}
         onClick={handleClick}>
-      <UserImage userLogin={body} imageSrc={author.profilePicture}/>
+      <UserImage userLogin={author.login} imageSrc={author.profilePicture}/>
       <div>
         <div>
           {
             author.login
             ? author.login
-            : `User has left the chat.UserId: ${authorId}`
+            : `UserId: ${authorId}`
 
           }
         </div>

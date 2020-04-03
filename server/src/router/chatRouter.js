@@ -24,8 +24,7 @@ chatRouter.route( '/chat/:chatId/participants' )
             leaveChat );
 
 chatRouter.route( '/chat/:chatId/messages(/:messageId)?' )
-          .get( findChatById,
-            getMessages )
+          .get( getChatById )
           .post( findChatById,
             createMessage )
 

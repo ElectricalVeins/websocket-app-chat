@@ -27,8 +27,8 @@ const MessageList = ( props ) => {
     return chatMessages.map( ( msg ) => {
       return ( <MessageItem key={msg._id}
                             messageId={msg._id}
-                            authorId={msg.authorId}
-                            author={msg.author}
+                            authorId={msg.authorId._id}
+                            author={msg.authorId}
                             body={msg.body}
                             updatedAt={msg.updatedAt}
                             messageClassName={styles.messageItem}/> )

@@ -130,23 +130,19 @@ function chatReducer( state = initialState, action ) {
 
     case ACTION_TYPES.LOAD_CHAT_MESSAGES_SUCCESS:
       const { data: { messages, users } } = action;
-      //=======================================
-      const newMessagesWithAuthors = messages.map( msg => ( {
+     /*
+     const newMessagesWithAuthors = messages.map( msg => ( {
         ...msg,
         author: users.find( usr => usr._id === msg.authorId ),
       } ) );
-
-      //  const chat = newState.chats[ chatId ];
-      //  chat.messages = [ ...chat.messages, ...newMessagesWithAuthors ];
-      //=======================================
+      */
       return {
         ...state,
         chats: {
           ...state.chats,
-          chatMessages: newMessagesWithAuthors,
+          chatMessages: messages,
           chatUsers: users,
         }
-
       };
 
     case ACTION_TYPES.LOAD_CHAT_MESSAGES_ERROR:
