@@ -54,9 +54,12 @@ module.exports.getChatById = async ( req, res, next ) => {
     const chat = await Chat.findById( req.params.chatId )
                            .populate( 'users', {
                              chats: 0,
+                             password:0,
+                             _v:0,
                            } )
                            .populate( 'owner', {
-                             chats: 0,
+                             chats: 0,password:0,
+                             _v:0,
                            } );
     if( chat ) {
       return res.send( chat );
