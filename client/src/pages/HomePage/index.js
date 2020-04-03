@@ -1,22 +1,25 @@
-import React, { Component, useEffect } from 'react';
-import ChatList                        from "../../components/ChatList";
-import MessagesList                    from "../../components/MessageList";
-import AvailableChats                  from "../../components/AllChatsList";
-import NotificationList                from "../../components/NotificationList";
-import { connect }                     from "react-redux";
+import React, { Component, useEffect, useState } from 'react';
+import ChatList                                  from "../../components/ChatList";
+import MessagesList                              from "../../components/MessageList";
+import AvailableChats                            from "../../components/AllChatsList";
+import NotificationList                          from "../../components/NotificationList";
+import { connect }                               from "react-redux";
 import {
   createClearChatAction,
   createGetNotificationSuccessAction,
   createLoadUserChatListAction
-}                                      from "../../redux/actions";
-import styles                          from './HomePage.module.scss'
-import { chatSocket }                  from "../../api/ws";
-import UserImage                       from "../../components/UserImage";
-import BurgerMenu                      from "../../components/BurgerMenu";
+}                                                from "../../redux/actions";
+import styles                                    from './HomePage.module.scss'
+import { chatSocket }                            from "../../api/ws";
+import UserImage                                 from "../../components/UserImage";
+import BurgerMenu                                from "../../components/BurgerMenu";
+import useWindowSize                             from "../../utils/useWindowSize";
 
 const HomePage = ( props ) => {
 
   const { auth, chatState } = props;
+
+  const windowSizes = useWindowSize();
 
   useEffect( () => {
     props.loadChatList( auth.user.id );
@@ -31,14 +34,28 @@ const HomePage = ( props ) => {
     }
   };
 
+  const tabletNav = () => {
+    return (
+      <>
+        <div>My chats:</div>
+        <ChatList chatState={chatState}/>
+      </>
+    )
+  };
+
   return (
     <div className={styles.container}
          onKeyDown={handleEscape}
          tabIndex="0">
       <BurgerMenu className={styles.burgerMenuContainer}>
+        {
+          ( windowSizes.width < 900 ) && ( tabletNav() )
+        }
         <AvailableChats className={styles.allChats}/>
       </BurgerMenu>
-      <ChatList chatState={chatState}/>
+      {
+        ( windowSizes.width >= 900 ) && <ChatList chatState={chatState}/>
+      }
       <MessagesList/>
       <NotificationList notifications={chatState.notificationList}/>
     </div>
