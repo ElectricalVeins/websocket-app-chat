@@ -9,17 +9,13 @@
   min-height: 30px;
   padding: 10px;
   min-width: 80px;
-
-
   vertical-align: middle;
   text-align:center;
-}
-
-.itemContainer:hover{
-  background-color: #E7EBF0;
-
+  &:hover{
+    background-color: lightgrey;
+  }
 }
 
 .selectedItemContainer{
-  background-color: #E7EBF0;
+  background-color: lightgrey;
 }

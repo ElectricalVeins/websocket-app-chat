@@ -12,6 +12,7 @@ import {
 import styles                          from './HomePage.module.scss'
 import { chatSocket }                  from "../../api/ws";
 import UserImage                       from "../../components/UserImage";
+import BurgerMenu                      from "../../components/BurgerMenu";
 
 const HomePage = ( props ) => {
 
@@ -34,7 +35,9 @@ const HomePage = ( props ) => {
     <div className={styles.container}
          onKeyDown={handleEscape}
          tabIndex="0">
-      <AvailableChats className={styles.allChats} />
+      <BurgerMenu className={styles.burgerMenuContainer}>
+        <AvailableChats className={styles.allChats}/>
+      </BurgerMenu>
       <ChatList chatState={chatState}/>
       <MessagesList/>
       <NotificationList notifications={chatState.notificationList}/>
