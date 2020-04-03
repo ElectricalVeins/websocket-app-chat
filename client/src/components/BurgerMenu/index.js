@@ -10,7 +10,7 @@ const BurgerMenu = props => {
       <label htmlFor='burger' className={styles.burger}>
         <Icon path={mdiMenu} size={1.5}/>
       </label>
-      <input id='burger' type="checkbox" className={styles.burgerCheck}/>
+      <input id='burger' type="checkbox" className={styles.burgerCheck}/>{/*вынести state в redux*/}
       <div className={styles.content}>
         {
           props.children

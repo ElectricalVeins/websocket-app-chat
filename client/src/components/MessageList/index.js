@@ -35,9 +35,6 @@ const MessageList = ( props ) => {
     } )
   };
 
-  const selectChat = () => {
-    return <li>Select chat</li>
-  };
 
   return (
     <div className={styles.messageListContainer}>
@@ -52,7 +49,7 @@ const MessageList = ( props ) => {
         {
           currentChat
           ? chatIsSelected()
-          : selectChat()
+          : (<li style={{textAlign:'center'}}>Select a chat to start messaging</li>)
         }
       </ul>
     </div>
