@@ -28,7 +28,7 @@ const SignUpForm = props => {
             validationSchema={signUpFormSchema}>
       {
         ( { errors, touched, setFieldValue, ...rest } ) => (
-          <Form encType="multipart/form-data">
+          <Form encType="multipart/form-data" className={props.className}>
             <Field type="text" name="login" placeholder="Login"/>
             {
               errors.login && touched.login

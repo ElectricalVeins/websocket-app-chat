@@ -10,7 +10,7 @@ import {
 import { messageSchema }       from "../../../utils/validationSchemes";
 
 const MessageForm = ( props ) => {
-  const { currentChat, userId } = props;
+  const { currentChat, userId, className } = props;
 
   const handleSubmit = ( { message }, formikBag ) => {
     emitMessage( currentChat, message, userId );
@@ -34,17 +34,16 @@ const MessageForm = ( props ) => {
               message: ''
             }}>
       {
-        ( {} ) => (
-          <Form>
+        () => (
+          <Form className={className}>
+            <div>
+              <button onClick={handleDelete}>Delete chat</button>
+              <button onClick={handleLeave}>Leave chat</button>
+            </div>
             <Field name={'message'}
                    type={'text'}
                    placeholder={'Type Your Message Here:'}/>
-            <br/>
             <button type={'submit'}>Send</button>
-            <br/>
-            <button onClick={handleDelete}>Delete chat</button>
-            <br/>
-            <button onClick={handleLeave}>Leave chat</button>
           </Form>
         )
       }

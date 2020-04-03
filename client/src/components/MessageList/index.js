@@ -41,7 +41,7 @@ const MessageList = ( props ) => {
       <div className={styles.inputWrapper}>
         {
           currentChat
-          ? <MessageForm/>
+          ? <MessageForm className={styles.formStyles}/>
           : null
         }
       </div>

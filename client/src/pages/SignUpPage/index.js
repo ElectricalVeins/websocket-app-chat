@@ -8,7 +8,7 @@ const SignUpPage = (props) => {
   return (
     <div className={styles.container}>
       <Link to={ '/login' }>Login</Link>
-      <SignUpForm/>
+      <SignUpForm className={styles.formStyles}/>
     </div>
   );
 };

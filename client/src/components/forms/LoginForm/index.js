@@ -20,7 +20,7 @@ let LoginForm = props => {
             }}>
       {
         ( { errors, touched, ...rest } ) => (
-          <Form>
+          <Form className={props.className}>
             <Field name={'login'}
                    type={'text'}
                    placeholder={'login'}/>

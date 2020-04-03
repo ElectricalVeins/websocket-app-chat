@@ -1,3 +1,39 @@
+.flexCenter{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .container{
-  background-color: #E7EBF0;
+@extend .flexCenter;
+}
+
+a{
+  font-size: 1.5em;
+  color: black;
+  text-decoration: none;
+  padding: 5px 25px;
+  margin: 2rem;
+  background-color: lightgray;
+}
+
+.formStyles{
+  @extend .flexCenter;
+  input{
+    background-color: white;
+    border: 1px solid lightblue;
+    padding: 5px 15px;
+
+    &:focus{
+      outline:0;
+      border: 1px solid dodgerblue;
+    }
+    &:invalid{
+      border: 1px solid red;
+    }
+  }
+  button{
+    padding: 5px 25px;
+  }
 }
