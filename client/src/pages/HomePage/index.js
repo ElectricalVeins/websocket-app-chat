@@ -13,10 +13,11 @@ import styles               from './HomePage.module.scss'
 import { chatSocket }       from "../../api/ws";
 import BurgerMenu           from "../../components/BurgerMenu";
 import useWindowSize        from "../../utils/useWindowSize";
+import Header               from "../../components/Header";
 
 const HomePage = ( props ) => {
 
-  const { auth, chatState, appState } = props;
+  const { auth, chatState } = props;
 
   const windowSizes = useWindowSize();
 
@@ -34,32 +35,22 @@ const HomePage = ( props ) => {
     }
   };
 
-  const tabletNav = () => {
-    return (
-      <>
-        <div>My chats:</div>
-        <ChatList chatState={chatState}/>
-        <br/>
-      </>
-    )
-  };
 
   return (
-    <div className={styles.container}
-         onKeyDown={handleEscape}
-         tabIndex="0">
-      <BurgerMenu className={styles.burgerMenuContainer}>
-        {
-          ( windowSizes.width < 800 ) && ( tabletNav() )
-        }
+    <>
+      <Header chatState={chatState} windowSizes={windowSizes} className={styles.header}>
         <AllChatsList className={styles.allChats}/>
-      </BurgerMenu>
-      {
-        ( windowSizes.width >= 800 ) && <ChatList chatState={chatState}/>
-      }
-      <MessagesList/>
-      <NotificationList notifications={chatState.notificationList}/>
-    </div>
+      </Header>
+      <div className={styles.container}
+           onKeyDown={handleEscape}
+           tabIndex="0">
+        {
+          ( windowSizes.width > 800 ) && <ChatList chatState={chatState}/>
+        }
+        <MessagesList/>
+        <NotificationList notifications={chatState.notificationList}/>
+      </div>
+    </>
   );
 };
 
