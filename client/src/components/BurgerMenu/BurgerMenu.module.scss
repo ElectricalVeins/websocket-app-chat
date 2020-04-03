@@ -4,7 +4,7 @@
   max-height: 100vh;
 
   overflow: hidden;
-  padding-top: 20px;
+  padding-top: 35px;
   background-color: white;
 
   position: absolute;
@@ -15,7 +15,7 @@
 
 .burgerCheck:checked ~ .content {
   overflow-y: auto;
-  max-width: 250px;
+  max-width: 25vmax;
 }
 
 .burgerCheck {
