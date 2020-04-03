@@ -26,6 +26,10 @@
 
   border: 1px solid grey;
   overflow-y: auto;
+
+  @media (max-width: 800px) {
+    flex-basis: 100%;
+  }
 }
 
 .container {

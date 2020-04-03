@@ -1,23 +1,22 @@
-import React, { Component, useEffect, useState } from 'react';
-import ChatList                                  from "../../components/ChatList";
-import MessagesList                              from "../../components/MessageList";
-import AvailableChats                            from "../../components/AllChatsList";
-import NotificationList                          from "../../components/NotificationList";
-import { connect }                               from "react-redux";
+import React, { useEffect } from 'react';
+import ChatList             from "../../components/ChatList";
+import MessagesList         from "../../components/MessageList";
+import AllChatsList         from "../../components/AllChatsList";
+import NotificationList     from "../../components/NotificationList";
+import { connect }          from "react-redux";
 import {
   createClearChatAction,
   createGetNotificationSuccessAction,
-  createLoadUserChatListAction
-}                                                from "../../redux/actions";
-import styles                                    from './HomePage.module.scss'
-import { chatSocket }                            from "../../api/ws";
-import UserImage                                 from "../../components/UserImage";
-import BurgerMenu                                from "../../components/BurgerMenu";
-import useWindowSize                             from "../../utils/useWindowSize";
+  createLoadUserChatListAction,
+}                           from "../../redux/actions";
+import styles               from './HomePage.module.scss'
+import { chatSocket }       from "../../api/ws";
+import BurgerMenu           from "../../components/BurgerMenu";
+import useWindowSize        from "../../utils/useWindowSize";
 
 const HomePage = ( props ) => {
 
-  const { auth, chatState } = props;
+  const { auth, chatState, appState } = props;
 
   const windowSizes = useWindowSize();
 
@@ -27,6 +26,7 @@ const HomePage = ( props ) => {
       props.getNotification( message, chatId )
     } );
   }, [] );
+
 
   const handleEscape = ( event ) => {
     if( event.keyCode === 27 ) {
@@ -39,6 +39,7 @@ const HomePage = ( props ) => {
       <>
         <div>My chats:</div>
         <ChatList chatState={chatState}/>
+        <br/>
       </>
     )
   };
@@ -49,12 +50,12 @@ const HomePage = ( props ) => {
          tabIndex="0">
       <BurgerMenu className={styles.burgerMenuContainer}>
         {
-          ( windowSizes.width < 900 ) && ( tabletNav() )
+          ( windowSizes.width < 800 ) && ( tabletNav() )
         }
-        <AvailableChats className={styles.allChats}/>
+        <AllChatsList className={styles.allChats}/>
       </BurgerMenu>
       {
-        ( windowSizes.width >= 900 ) && <ChatList chatState={chatState}/>
+        ( windowSizes.width >= 800 ) && <ChatList chatState={chatState}/>
       }
       <MessagesList/>
       <NotificationList notifications={chatState.notificationList}/>
@@ -75,6 +76,7 @@ const mapDispatchToProps = dispatch => ( {
   loadChatList: ( data ) => {
     dispatch( createLoadUserChatListAction( data ) )
   },
+
 } );
 
 export default connect( mapStateToProps, mapDispatchToProps )( HomePage );

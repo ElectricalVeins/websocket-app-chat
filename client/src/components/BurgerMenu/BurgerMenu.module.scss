@@ -13,13 +13,10 @@
   transition: all ease 0.5s;
 }
 
-.burgerCheck:checked ~ .content {
+.showContent {
+  @extend .content;
   overflow-y: auto;
   max-width: 25vmax;
-}
-
-.burgerCheck {
-  display: none;
 }
 
 .burger {

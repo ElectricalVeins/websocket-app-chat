@@ -7,22 +7,19 @@ import CreateChatForm               from "../forms/CreateChatForm";
 
 const AllChatsList = ( props ) => {
 
-  const { chatState: { chats: { allAvailableChats } }, userId } = props;
+  const { chatState: { chats: { allAvailableChats } }, userId, loadAllChats,className } = props;
 
-  const handleClick = () => {
-    props.loadAllChats()
-  };
+  const handleClick = () => loadAllChats();
 
   const [ showCreateForm, setShowCreateForm ] = useState( false );
-  const showForm = () => {
-    setShowCreateForm( !showCreateForm )
-  };
+
+  const showForm = () => setShowCreateForm( !showCreateForm );
 
   return (
-    <div className={props.className}>
+    <div className={className}>
       <div onClick={showForm}> Create chat:</div>
       {
-        showCreateForm && <CreateChatForm formStyle={styles.form} />
+        showCreateForm && <CreateChatForm formStyle={styles.form}/>
       }
       <div onClick={handleClick}>
         View All Chats:
