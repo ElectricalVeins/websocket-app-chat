@@ -15,7 +15,6 @@ const MessageItem = ( props ) => {
     messageClassName
   } = props;
 
-  console.log(author)
 
   const computedStyles = classNames( messageClassName, );
 
@@ -26,7 +25,7 @@ const MessageItem = ( props ) => {
   return (
     <li className={computedStyles}
         onClick={handleClick}>
-      <UserImage userLogin={body} imageSrc={author.profilePicture}/>
+      <UserImage userLogin={body}  imageSrc={author.profilePicture}/>
       <div>
         <div>
           {
