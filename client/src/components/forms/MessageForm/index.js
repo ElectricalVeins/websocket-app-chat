@@ -39,10 +39,11 @@ const MessageForm = ( props ) => {
             <Field name={'message'}
                    type={'text'}
                    placeholder={'Type Your Message Here:'}/>
-
+            <br/>
             <button type={'submit'}>Send</button>
             <br/>
             <button onClick={handleDelete}>Delete chat</button>
+            <br/>
             <button onClick={handleLeave}>Leave chat</button>
           </Form>
         )
@@ -53,10 +54,11 @@ const MessageForm = ( props ) => {
 
 
 const mapDispatchToProps = dispatch => ( {
-  leaveChat:(currentChat, userId)=>(dispatch(createLeaveChatRequestAction(currentChat, userId))),
+  leaveChat: ( currentChat, userId ) => ( dispatch(
+    createLeaveChatRequestAction( currentChat, userId ) ) ),
   deleteChat: ( currentChat, userId ) =>
-    dispatch(createDeleteChatAction( currentChat, userId ) ),
-  clearCurrentChat:()=>(dispatch(createClearChatAction()))
+    dispatch( createDeleteChatAction( currentChat, userId ) ),
+  clearCurrentChat: () => ( dispatch( createClearChatAction() ) )
 } );
 
 

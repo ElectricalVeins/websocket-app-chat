@@ -20,7 +20,7 @@ const MessageForm = ( props ) => {
             }}>
       {
         ( { errors, touched } ) => (
-          <Form>
+          <Form className={props.formStyle}>
             <Field name={'name'}
                    type={'text'}
                    placeholder={'Type Chat Name Here:'}/>

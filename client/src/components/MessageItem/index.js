@@ -15,6 +15,8 @@ const MessageItem = ( props ) => {
     messageClassName
   } = props;
 
+  console.log(author)
+
   const computedStyles = classNames( messageClassName, );
 
   const handleClick = ( e ) => {

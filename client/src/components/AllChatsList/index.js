@@ -19,12 +19,12 @@ const AllChatsList = ( props ) => {
   };
 
   return (
-    <div>
-      <div className={props.className} onClick={showForm}> Create chat:</div>
+    <div className={props.className}>
+      <div onClick={showForm}> Create chat:</div>
       {
-        showCreateForm && <CreateChatForm/>
+        showCreateForm && <CreateChatForm formStyle={styles.form} />
       }
-      <div className={props.className} onClick={handleClick}>
+      <div onClick={handleClick}>
         View All Chats:
       </div>
       <ul>{

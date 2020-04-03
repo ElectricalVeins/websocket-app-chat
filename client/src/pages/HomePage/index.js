@@ -34,7 +34,7 @@ const HomePage = ( props ) => {
     <div className={styles.container}
          onKeyDown={handleEscape}
          tabIndex="0">
-      <AvailableChats className={styles.itemContainer}/>
+      <AvailableChats className={styles.allChats} />
       <ChatList chatState={chatState}/>
       <MessagesList/>
       <NotificationList notifications={chatState.notificationList}/>
