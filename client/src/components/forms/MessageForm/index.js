@@ -42,6 +42,7 @@ const MessageForm = ( props ) => {
             </div>
             <Field name={'message'}
                    type={'text'}
+                   autoComplete="off"
                    placeholder={'Type Your Message Here:'}/>
             <button type={'submit'}>Send</button>
           </Form>
