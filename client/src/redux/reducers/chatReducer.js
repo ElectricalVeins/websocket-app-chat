@@ -130,12 +130,12 @@ function chatReducer( state = initialState, action ) {
 
     case ACTION_TYPES.LOAD_CHAT_MESSAGES_SUCCESS:
       const { data: { messages, users } } = action;
-     /*
-     const newMessagesWithAuthors = messages.map( msg => ( {
-        ...msg,
-        author: users.find( usr => usr._id === msg.authorId ),
-      } ) );
-      */
+      /*
+       const newMessagesWithAuthors = messages.map( msg => ( {
+       ...msg,
+       author: users.find( usr => usr._id === msg.authorId ),
+       } ) );
+       */
       return {
         ...state,
         chats: {
@@ -154,16 +154,15 @@ function chatReducer( state = initialState, action ) {
     case ACTION_TYPES.SEND_MESSAGE_SUCCESS:
       const newMessage = action.data;
       const { chats } = state;
-
       const newChatMessages = _.clone( chats.chatMessages );
       //Если сообщение новое - добавить в массив. Если нет- вернуть state
       const index = newChatMessages.findIndex( ( msg ) => msg._id === newMessage._id );
       if( index === -1 ) {
         /*
-        newMessage.author = chats.chatUsers.find( usr =>
-          usr._id === newMessage.authorId );
+         newMessage.author = chats.chatUsers.find( usr =>
+         usr._id === newMessage.authorId );
+         */
         newChatMessages.push( newMessage );
-        */
         return {
           ...state,
           chats: {
@@ -205,7 +204,7 @@ function chatReducer( state = initialState, action ) {
       };
 
     case ACTION_TYPES.GET_NOTIFICATION_SUCCESS:
-      console.log(state,action);
+      console.log( state, action );
       const { message, chatId } = action;
       if( chatId === state.currentChat ) {
         return { ...state }
