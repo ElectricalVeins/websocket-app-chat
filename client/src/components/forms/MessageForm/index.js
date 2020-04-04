@@ -34,7 +34,7 @@ const MessageForm = ( props ) => {
               message: ''
             }}>
       {
-        () => (
+        (props) => (
           <Form className={className}>
             <div>
               <button onClick={handleDelete}>Delete chat</button>
@@ -42,6 +42,12 @@ const MessageForm = ( props ) => {
             </div>
             <Field name={'message'}
                    type={'text'}
+                   onKeyPress={e => {
+                     if( e.key === 'Enter' ) {
+                       e.preventDefault();
+                       props.handleSubmit()
+                     }
+                   }}
                    autoComplete="off"
                    placeholder={'Type Your Message Here:'}/>
             <button type={'submit'}>Send</button>
