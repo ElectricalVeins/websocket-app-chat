@@ -12,7 +12,7 @@ const NotificationList = ( props ) => {
         ? notifications.map( ( item ) => ( <NotificationItem key={item.message._id}
                                                                 id={item.message._id}
                                                                 body={item.message.body}
-                                                                author={item.message.authorId}
+                                                                author={item.message.authorId.login}
                                                                 name={item.chatId}
                                                                 notificationItemClassName={styles.itemContainer}/> ) )
         : null

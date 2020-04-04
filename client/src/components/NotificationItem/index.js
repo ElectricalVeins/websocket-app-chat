@@ -20,7 +20,7 @@ const NotificationItem = ( props ) => {
   } = props;
 
   useEffect( () => {
-    setTimeout( () => {props.deleteNotification( id )}, 5000 )
+    setTimeout( () => {props.deleteNotification( id )}, 15000 )
   }, [] );
 
   const computedStyles = classNames( notificationItemClassName );
@@ -39,7 +39,7 @@ const NotificationItem = ( props ) => {
       </div>
       <div>
         {
-          `AuthorId: ${author}`
+          `Author: ${author}`
         }
       </div>
       <div>
