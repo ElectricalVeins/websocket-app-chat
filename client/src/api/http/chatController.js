@@ -1,12 +1,10 @@
 import http from "./index";
 
-export const getUserChats = ( userId ) =>
+export const getUserChats = () =>
   http.get( '/user_chats', {
     headers: {
       'Content-type': 'application/json',
-      'Authorization': userId
     },
-
   } );
 
 export const getChatMessages = ( { chatId } ) =>
@@ -22,29 +20,12 @@ export const getAllAvailableChats = () => http.get( '/chats', {
   }
 } );
 
-export const joinUserToChatById = ( { chatId, userId } ) =>
-  http.post( `/chat/${chatId}/participants`, null, {
-    headers: {
-      'Authorization': userId,
-    },
-  } );
+export const joinUserToChatById = ( { chatId } ) =>
+  http.post( `/chat/${chatId}/participants`)
+;
 
-export const leaveChatById = ( chatId, userId ) => http.delete( `/chat/${chatId}/participants`,
-  {
-    headers: {
-      'Authorization': userId,
-    },
-  } );
+export const leaveChatById = ( chatId ) => http.delete( `/chat/${chatId}/participants` );
 
-export const deleteChatById = ( chatId, userId ) => http.delete( `/chat/${chatId}`,
-  {
-    headers: {
-      'Authorization': userId,
-    },
-  } );
+export const deleteChatById = ( chatId ) => http.delete( `/chat/${chatId}` );
 
-export const createChat = ( {chatName,userId} ) => http.post( '/chat', { name: chatName }, {
-  headers: {
-    'Authorization': userId,
-  },
-} )
+export const createChat = ( { chatName } ) => http.post( '/chat', { name: chatName } )
