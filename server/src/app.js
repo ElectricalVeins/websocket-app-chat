@@ -1,4 +1,5 @@
 const Chat = require( './models/Chat' );
+const User = require( './models/User' );
 const path = require( 'path' );
 const { Server } = require( 'http' );
 const express = require( 'express' );
@@ -45,18 +46,27 @@ io.on( 'connection', function ( socket ) {
         authorId: from
       };
 
+      const user = await User.findById( from );
       const chat = await Chat.findById( chatId );
-      chat.messages.push( message );
-      const savedChat = await chat.save();
+      if( user && chat ) {
+        chat.messages.push( message );
+        const savedChat = await chat.save();
+        const messagesWithAuthor = await Chat.findById( chatId )
+                                       .populate( 'messages.authorId', {
+                                         chats: 0,
+                                         password: 0
+                                       } );
 
-      const lastMessage = savedChat.messages[ savedChat.messages.length - 1 ];
+        const messages = messagesWithAuthor.messages;
+        const lastMessage = messages[messages.length - 1];
 
-      console.log( lastMessage );
-
-      if( savedChat ) {
-        io.in( chatId ).emit( 'message', lastMessage );
-        socket.to(chatId).emit( 'new-message', lastMessage, chatId );
+        if( savedChat && lastMessage ) {
+          io.in( chatId ).emit( 'message', lastMessage );
+          socket.to( chatId ).emit( 'new-message', lastMessage, chatId );
+        }
       }
+      //emit(error to client server-events namespace?)
+
     } catch ( e ) {
       throw e
     }

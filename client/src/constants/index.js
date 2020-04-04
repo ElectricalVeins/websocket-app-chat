@@ -1,3 +1,5 @@
+export const ACCESS_KEY='ACCESS_KEY';
+
 export const SUPPORTED_FORMATS = [
   "image/jpg",
   "image/jpeg",

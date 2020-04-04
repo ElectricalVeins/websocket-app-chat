@@ -158,12 +158,12 @@ function chatReducer( state = initialState, action ) {
       const newChatMessages = _.clone( chats.chatMessages );
       //Если сообщение новое - добавить в массив. Если нет- вернуть state
       const index = newChatMessages.findIndex( ( msg ) => msg._id === newMessage._id );
-
       if( index === -1 ) {
-
+        /*
         newMessage.author = chats.chatUsers.find( usr =>
           usr._id === newMessage.authorId );
         newChatMessages.push( newMessage );
+        */
         return {
           ...state,
           chats: {
