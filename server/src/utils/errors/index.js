@@ -22,8 +22,22 @@ class NotFoundError extends UserError{
   }
 }
 
+class AuthorizationError extends UserError{
+  constructor(msg) {
+    super(msg||'Authorization Error',401);
+  }
+}
+
+class AuthenticationTimeoutError extends UserError {
+  constructor( message ) {
+    super( message || 'Access token is missing or expired', 419 );
+  }
+}
+
 module.exports = {
   UserError,
   BadRequestError,
   NotFoundError,
+  AuthorizationError,
+  AuthenticationTimeoutError
 };

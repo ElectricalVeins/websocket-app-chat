@@ -2,6 +2,8 @@ const path = require( 'path' );
 const express = require( 'express' );
 const cors = require( 'cors' );
 const router = require( '../router' );
+const handleUserError=require('../middleware/errorHandler');
+
 const app = express();
 
 app.use( cors() );
@@ -17,8 +19,9 @@ app.use( '/api', router );
 /*
  * error handler
  */
-app.use( ( err, req, res, next ) => {
-  res.status( 500 ).send( err );
-} );
+app.use( handleUserError,
+  ( err, req, res, next ) => {
+    res.status( 500 ).send( err );
+  } );
 
 module.exports = app;
