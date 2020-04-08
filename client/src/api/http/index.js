@@ -2,7 +2,7 @@ import axios          from 'axios';
 import { ACCESS_KEY } from "../../constants";
 
 const http = axios.create( {
-  baseURL: 'http://localhost:3030/api',
+  baseURL: 'http://localhost:3000/api',
 } );
 
 http.interceptors.request.use( config => {
