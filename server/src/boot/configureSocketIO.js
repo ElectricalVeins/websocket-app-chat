@@ -16,27 +16,24 @@ module.exports = io = socketIO.listen( server ).on( 'connection', function ( soc
         authorId: from
       };
 
-      const user = await User.findById( from );
       const chat = await Chat.findById( chatId );
-      if( user && chat ) {
-        chat.messages.push( message );
-        const savedChat = await chat.save();
-        const messagesWithAuthor = await Chat.findById( chatId )
-                                             .populate( 'messages.authorId', {
-                                               chats: 0,
-                                               password: 0
-                                             } );
+      chat.messages.push( message );
+      const savedChat = await chat.save();
+      const messagesWithAuthor = await Chat.findById( chatId )
+                                           .populate( 'messages.authorId', {
+                                             chats: 0,
+                                             password: 0
+                                           } );
 
-        const messages = messagesWithAuthor.messages;
-        const lastMessage = messages[ messages.length - 1 ];
+      const messages = messagesWithAuthor.messages;
+      const lastMessage = messages[ messages.length - 1 ];
 
-        if( savedChat && lastMessage ) {
-          io.in( chatId ).emit( 'message', lastMessage );
-          socket.to( chatId ).emit( 'new-message', lastMessage, chatId );
-        }
+      if( savedChat && lastMessage ) {
+        io.in( chatId ).emit( 'message', lastMessage, chatId );
+        socket.to( chatId ).emit( 'new-message', lastMessage, chatId );
       }
-      //emit(error to client server-events namespace?)
 
+      //emit(error to client server-events namespace?)
     } catch ( e ) {
       throw e
     }

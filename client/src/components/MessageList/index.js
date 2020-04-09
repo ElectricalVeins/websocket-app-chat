@@ -17,8 +17,11 @@ const MessageList = ( props ) => {
   } = props;
 
   useEffect( () => {
-    chatSocket.on( 'message', ( message ) => {
-      props.getMessage( message )
+    chatSocket.on( 'message', ( message, chatId ) => {
+      props.getMessage( {
+        ...message,
+        chatId
+      } )
     } )
   } );
 
@@ -49,7 +52,7 @@ const MessageList = ( props ) => {
         {
           currentChat
           ? chatIsSelected()
-          : (<li style={{textAlign:'center'}}>Select a chat to start messaging</li>)
+          : ( <li style={{ textAlign: 'center' }}>Select a chat to start messaging</li> )
         }
       </ul>
     </div>

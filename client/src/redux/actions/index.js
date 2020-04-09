@@ -59,13 +59,10 @@ export const createLoadChatMessagesErrorAction = ( error ) => ( {
  from,
  } );*/
 
-export const createGetMessageSuccessAction = ( data ) => {
-  const object = {
+export const createGetMessageSuccessAction = ( data ) => ({
     type: ACTION_TYPES.SEND_MESSAGE_SUCCESS,
     data,
-  };
-  return object
-};
+})
 
 export const createGetMessageErrorAction = ( error ) => ( {
   type: ACTION_TYPES.SEND_MESSAGE_ERROR,

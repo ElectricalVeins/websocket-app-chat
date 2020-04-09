@@ -153,7 +153,11 @@ function chatReducer( state = initialState, action ) {
 
     case ACTION_TYPES.SEND_MESSAGE_SUCCESS:
       const newMessage = action.data;
-      const { chats } = state;
+      const { chats, currentChat } = state;
+
+      if( newMessage.chatId !== currentChat ) {
+        return { ...state }
+      }
       const newChatMessages = _.clone( chats.chatMessages );
       //Если сообщение новое - добавить в массив. Если нет- вернуть state
       const index = newChatMessages.findIndex( ( msg ) => msg._id === newMessage._id );
