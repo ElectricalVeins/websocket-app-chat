@@ -1,3 +1,5 @@
+export const CLIENT_PORT=3000
+
 export const ACCESS_KEY='ACCESS_KEY';
 
 export const SUPPORTED_FORMATS = [

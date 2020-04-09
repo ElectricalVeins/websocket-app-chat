@@ -11,7 +11,6 @@ import {
 }                           from "../../redux/actions";
 import styles               from './HomePage.module.scss'
 import { chatSocket }       from "../../api/ws";
-import BurgerMenu           from "../../components/BurgerMenu";
 import useWindowSize        from "../../utils/useWindowSize";
 import Header               from "../../components/Header";
 
@@ -23,18 +22,17 @@ const HomePage = ( props ) => {
 
   useEffect( () => {
     props.loadChatList( auth.user.id );
+
     chatSocket.on( 'new-message', ( message, chatId ) => {
       props.getNotification( message, chatId )
     } );
   }, [] );
-
 
   const handleEscape = ( event ) => {
     if( event.keyCode === 27 ) {
       props.clearCurrentChat()
     }
   };
-
 
   return (
     <>
@@ -67,7 +65,6 @@ const mapDispatchToProps = dispatch => ( {
   loadChatList: ( data ) => {
     dispatch( createLoadUserChatListAction( data ) )
   },
-
 } );
 
 export default connect( mapStateToProps, mapDispatchToProps )( HomePage );

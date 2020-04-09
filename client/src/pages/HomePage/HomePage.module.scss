@@ -2,7 +2,7 @@
   background-color:lightgray;
   display: flex;
   justify-content: space-between;
-  div{
+  &>div{
     display: flex;
     align-items: center;
   }

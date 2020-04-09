@@ -3,11 +3,9 @@ import { ACCESS_KEY } from "../../constants";
 
 const authUser = async ( url, userData, config ) => {
   try {
-      console.log(userData)
     const response = await http.post( url, userData, config );
     const { data } = response;
     sessionStorage.setItem( ACCESS_KEY, data.id );
-
     return response
   } catch ( e ) {
     sessionStorage.removeItem( ACCESS_KEY );
@@ -21,6 +19,4 @@ export const signUpUser = async data => authUser( '/sign_up', data, {
   },
 } );
 
-export const loginUser = async data => authUser( '/login', data, {
-  headers: { 'Content-type': 'application/json' },
-} );
+export const loginUser = async data => authUser( '/login', data );

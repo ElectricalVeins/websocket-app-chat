@@ -5,10 +5,10 @@ services:
       context: ./client
       dockerfile: Dockerfile.dev
     stdin_open: true
+    environment:
+    - PORT=3000
     ports:
     - 5000:3000
-    expose:
-      - 3000
     volumes:
       - ./client:/client
     depends_on:
@@ -19,11 +19,11 @@ services:
       context: ./server
       dockerfile: Dockerfile.dev
     ports:
-      - 3000:3030
-    expose:
-      - 3030
+      - 3000:3000
     volumes:
       - ./server:/server
+    environment:
+      - PORT=3000
     depends_on:
       - mongodb
 
