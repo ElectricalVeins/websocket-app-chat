@@ -1,97 +1,78 @@
-import { put } from 'redux-saga/effects';
-import {
-  createLoadChatMessagesErrorAction,
-  createLoadChatMessagesSuccessAction,
-  createLoadUserChatListErrorAction,
-  createLoadUserChatListSuccessAction,
-  createLoadAllChatSuccess,
-  createLoadAllChatError,
-  createLeaveChatSuccessAction,
-  createLeaveChatErrorAction,
-  createJoinUserToChatErrorAction,
-  createJoinUserToChatSuccessAction,
-  createChatCreationSuccessAction,
-  createChatCreationErrorAction,
-  createDeleteChatSuccess,
-  createDeleteChatError, createGetUserActionSuccess, createGetUserActionError
-} from '../actions';
-import {
-  createChat, deleteChatById,
-  getAllAvailableChats,
-  getChatMessages,
-  getUserChats, joinUserToChatById, leaveChatById
-}                      from "../../api/http/chatController";
-import { getUserById } from "../../api/http/userController";
+import { put }             from 'redux-saga/effects';
+import * as actionCreator  from '../actions';
+import * as chatController from "../../api/http/chatController";
+import * as userController from "../../api/http/userController";
 
 export function* loadUserChatListSaga( { values } ) {
   try {
-    const { data } = yield getUserChats( values );
-    yield put( createLoadUserChatListSuccessAction( data ) );
+    const { data } = yield chatController.getUserChats( values );
+    yield put( actionCreator.createLoadUserChatListSuccessAction( data ) );
   } catch ( e ) {
-    yield put( createLoadUserChatListErrorAction( e.response ) );
+    yield put( actionCreator.createLoadUserChatListErrorAction( e.response ) );
   }
 }
 
 export function* loadChatMessagesSaga( chatId ) {
   try {
-    const { data } = yield getChatMessages( chatId );
-    yield put( createLoadChatMessagesSuccessAction( data ) )
+    const { data } = yield chatController.getChatMessages( chatId );
+    yield put( actionCreator.createLoadChatMessagesSuccessAction( data ) )
   } catch ( e ) {
-    yield put( createLoadChatMessagesErrorAction( e ) )
+    yield put( actionCreator.createLoadChatMessagesErrorAction( e.response ) )
   }
 }
 
 export function* loadAllChatsSaga() {
   try {
-    const { data } = yield getAllAvailableChats();
-    yield put( createLoadAllChatSuccess( data ) )
+    const { data } = yield chatController.getAllAvailableChats();
+    yield put( actionCreator.createLoadAllChatSuccess( data ) )
   } catch ( e ) {
-    yield put( createLoadAllChatError( e ) )
+    yield put( actionCreator.createLoadAllChatError( e.response ) )
   }
 }
 
 
 export function* deleteChatSaga( { currentChat, userId } ) {
   try {
-    const { data } = yield deleteChatById( currentChat, userId );
-    yield put( createDeleteChatSuccess( data ) )
+    const { data } = yield chatController.deleteChatById( currentChat, userId );
+    yield put( actionCreator.createDeleteChatSuccess( data ) )
   } catch ( e ) {
-    yield put( createDeleteChatError( e ) )
+    yield put( actionCreator.createDeleteChatError( e.response ) )
   }
 }
 
 export function* leaveChatSaga( { currentChat, userId } ) {
   try {
-    const { data } = yield leaveChatById( currentChat, userId );
-    yield put( createLeaveChatSuccessAction( data ) )
+    const { data } = yield chatController.leaveChatById( currentChat, userId );
+    yield put( actionCreator.createLeaveChatSuccessAction( data ) )
   } catch ( e ) {
-    yield put( createLeaveChatErrorAction( e ) )
+    yield put( actionCreator.createLeaveChatErrorAction( e.response ) )
   }
 }
 
 
 export function* joinChatSaga( chatId, userId ) {
   try {
-    const { data } = yield joinUserToChatById( chatId, userId );
-    yield put( createJoinUserToChatSuccessAction( data ) )
+    const { data } = yield chatController.joinUserToChatById( chatId, userId );
+    yield put( actionCreator.createJoinUserToChatSuccessAction( data ) )
   } catch ( e ) {
-    yield put( createJoinUserToChatErrorAction( e ) )
+    yield put( actionCreator.createJoinUserToChatErrorAction( e.response ) )
   }
 }
 
 export function* createChatSaga( chatName, userId ) {
   try {
-    const { data } = yield createChat( chatName, userId );
-    yield put( createChatCreationSuccessAction( data ) )
+    const { data } = yield chatController.createChat( chatName, userId );
+    yield put( actionCreator.createChatCreationSuccessAction( data ) )
   } catch ( e ) {
-    yield put( createChatCreationErrorAction( e ) )
+    yield put( actionCreator.createChatCreationErrorAction( e.response ) )
   }
 }
-export function* getUserLoginSaga( {userId} ) {
+
+export function* getUserLoginSaga( { userId } ) {
   try {
-    const { data } = yield getUserById( userId );
-    yield put( createGetUserActionSuccess( data ) )
+    const { data } = yield userController.getUserById( userId );
+    yield put( actionCreator.createGetUserActionSuccess( data ) )
   } catch ( e ) {
-    yield put( createGetUserActionError( e ) )
+    yield put( actionCreator.createGetUserActionError( e.response ) )
   }
 }
