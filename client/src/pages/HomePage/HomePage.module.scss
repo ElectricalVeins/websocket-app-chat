@@ -1,5 +1,11 @@
 .header {
   background-color:lightgray;
+  display: flex;
+  justify-content: space-between;
+  div{
+    display: flex;
+    align-items: center;
+  }
   @media (max-width: 800px) {
     background-color: #E7EBF0;
   }
