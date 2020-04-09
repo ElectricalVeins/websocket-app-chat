@@ -39,7 +39,14 @@ module.exports = io = socketIO.listen( server ).on( 'connection', function ( soc
     }
 
   } );
+
+  socket.on( 'leave-room', function ( room ) {
+    socket.leave( room );
+  } );
+
   socket.on( 'disconnect', reason => {
 
   } );
+
+
 } );

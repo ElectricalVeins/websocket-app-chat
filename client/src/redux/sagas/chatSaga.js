@@ -2,6 +2,7 @@ import { put }             from 'redux-saga/effects';
 import * as actionCreator  from '../actions';
 import * as chatController from "../../api/http/chatController";
 import * as userController from "../../api/http/userController";
+import { emitLeaveRoom }   from "../../api/ws/chatApi";
 
 export function* loadUserChatListSaga( { values } ) {
   try {
@@ -43,6 +44,7 @@ export function* deleteChatSaga( { currentChat, userId } ) {
 export function* leaveChatSaga( { currentChat, userId } ) {
   try {
     const { data } = yield chatController.leaveChatById( currentChat, userId );
+    yield emitLeaveRoom(currentChat)
     yield put( actionCreator.createLeaveChatSuccessAction( data ) )
   } catch ( e ) {
     yield put( actionCreator.createLeaveChatErrorAction( e.response ) )
