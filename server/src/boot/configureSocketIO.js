@@ -45,7 +45,7 @@ module.exports = io = socketIO.listen( server ).on( 'connection', function ( soc
   } );
 
   socket.on( 'disconnect', reason => {
-    socket.emit( 'disconnect', reason )
+
   } );
 
 
