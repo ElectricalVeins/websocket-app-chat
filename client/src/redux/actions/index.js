@@ -53,21 +53,21 @@ export const createLoadChatMessagesErrorAction = ( error ) => ( {
 
 //WS
 export const createSendMessageRequestAction = ( currentChat, message, userId ) => ( {
- type: ACTION_TYPES.SEND_MESSAGE_REQUEST,
+  type: ACTION_TYPES.SEND_MESSAGE_REQUEST,
   currentChat,
   message,
   userId
- } );
+} );
 
 export const createSendMessageErrorAction = ( error ) => ( {
   type: ACTION_TYPES.SEND_MESSAGE_ERROR,
   error
 } );
 
-export const createGetMessageSuccessAction = ( data ) => ({
-    type: ACTION_TYPES.SEND_MESSAGE_SUCCESS,
-    data,
-})
+export const createGetMessageSuccessAction = ( data ) => ( {
+  type: ACTION_TYPES.SEND_MESSAGE_SUCCESS,
+  data,
+} )
 
 export const createGetMessageErrorAction = ( error ) => ( {
   type: ACTION_TYPES.SEND_MESSAGE_ERROR,
@@ -190,12 +190,19 @@ export const createGetUserActionError = ( error ) => ( {
   error
 } );
 
-
-export const createToggleMenuAction=()=>({
+export const createToggleMenuAction = () => ( {
   type: ACTION_TYPES.TOGGLE_MENU_ACTION
-});
+} );
 
-export const createCloseMenuAction=()=>({
-  type:  ACTION_TYPES.CLOSE_MENU_ACTION
-});
+export const createCloseMenuAction = () => ( {
+  type: ACTION_TYPES.CLOSE_MENU_ACTION
+} );
+
+export const createUserToggleMenuAction = () => ( {
+  type: ACTION_TYPES.TOGGLE_USER_MENU_ACTION
+} );
+
+export const createUserCloseMenuAction = () => ( {
+  type: ACTION_TYPES.CLOSE_USER_MENU_ACTION
+} );
 

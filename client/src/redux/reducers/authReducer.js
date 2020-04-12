@@ -35,7 +35,7 @@ function authReducer( state = initialState, action ) {
         error: action.error,
       };
     default:
-      return state;
+      return { ...state };
   }
 }
 

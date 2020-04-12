@@ -1,15 +1,39 @@
+body {
+  max-height: 100vh;
+  overflow-y: hidden;
+}
+
+form {
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+
+  button {
+    border: 1px solid #e0e4e9;
+    padding: 5px 20px;
+    margin-top: 10px;
+    background-color: white;
+    cursor: pointer;
+
+    &:hover {
+      border: 1px solid lightblue;
+    }
+  }
+
+  input {
+    padding: 5px;
+    margin-top: 5px;
+  }
+}
+
 .header {
   background-color:lightgray;
   display: flex;
   justify-content: space-between;
-  &>div{
-    display: flex;
-    align-items: center;
-  }
+
   @media (max-width: 800px) {
     background-color: #E7EBF0;
   }
-
 }
 
 .container {
@@ -36,31 +60,10 @@
   }
 }
 
-body {
-  max-height: 100vh;
-  overflow-y: hidden;
-}
+.userContainer{
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 
-
-form {
-  width: 100%;
-  text-align: center;
-  box-sizing: border-box;
-
-  button {
-    border: 1px solid #e0e4e9;
-    padding: 5px 20px;
-    margin-top: 10px;
-    background-color: white;
-    cursor: pointer;
-
-    &:hover {
-      border: 1px solid lightblue;
-    }
-  }
-
-  input {
-    padding: 5px;
-    margin-top: 5px;
-  }
+  transition: all ease 0.5s;
 }

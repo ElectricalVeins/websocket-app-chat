@@ -11,6 +11,7 @@ import {
 import styles               from './HomePage.module.scss'
 import useWindowSize        from "../../utils/useWindowSize";
 import Header               from "../../components/Header";
+import UserProfile          from "../../components/UserProfile";
 
 const HomePage = ( props ) => {
 
@@ -30,7 +31,7 @@ const HomePage = ( props ) => {
 
   return (
     <>
-      <Header className={styles.header}>
+      <Header className={styles.header} userClassName={styles.userContainer}>
         {
           ( windowSizes.width <= 800 ) && (
             <>
@@ -60,10 +61,8 @@ const mapStateToProps = ( state ) => {
 };
 
 const mapDispatchToProps = dispatch => ( {
-  clearCurrentChat: () => ( dispatch( createClearChatAction() ) ),
-  loadChatList: ( data ) => {
-    dispatch( createLoadUserChatListAction( data ) )
-  },
+  clearCurrentChat: () => dispatch( createClearChatAction() ),
+  loadChatList: ( data ) => dispatch( createLoadUserChatListAction( data ) ),
 } );
 
 export default connect( mapStateToProps, mapDispatchToProps )( HomePage );
