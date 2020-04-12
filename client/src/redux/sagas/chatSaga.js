@@ -33,11 +33,7 @@ export function* loadAllChatsSaga() {
 
 export function* sendMessageSaga( currentChat, message, userId ) {
   try {
-    yield emitMessage( {
-      currentChat,
-      message,
-      userId
-    } )
+    yield emitMessage( currentChat, message, userId )
   } catch ( e ) {
     yield put( actionCreator.createSendMessageErrorAction( e.response ) )
   }
