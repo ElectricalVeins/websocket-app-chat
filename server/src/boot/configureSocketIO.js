@@ -5,7 +5,7 @@ const server = require( './configureHTTPServer' );
 
 module.exports = io = socketIO.listen( server ).on( 'connection', function ( socket ) {
 
-  socket.on( 'join', function ( room ) {
+  socket.on( 'join', ( room ) => {
     socket.join( room );
   } );
 
@@ -25,8 +25,8 @@ module.exports = io = socketIO.listen( server ).on( 'connection', function ( soc
                                              password: 0
                                            } );
 
-      const messages = messagesWithAuthor.messages;
-      const lastMessage = messages[ messages.length - 1 ];
+      //const lastMessage = messagesWithAuthor.messages[ messagesWithAuthor.messages.length - 1 ];
+      const lastMessage = messagesWithAuthor.messages.last();
 
       if( savedChat && lastMessage ) {
         io.in( chatId ).emit( 'message', lastMessage, chatId );
@@ -40,12 +40,12 @@ module.exports = io = socketIO.listen( server ).on( 'connection', function ( soc
 
   } );
 
-  socket.on( 'leave-room', function ( room ) {
+  socket.on( 'leave-room', ( room ) => {
     socket.leave( room );
   } );
 
   socket.on( 'disconnect', reason => {
-
+    socket.emit( 'disconnect', reason )
   } );
 
 

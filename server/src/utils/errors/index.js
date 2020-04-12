@@ -34,6 +34,12 @@ class AuthenticationTimeoutError extends UserError {
   }
 }
 
+//===этому тут не место
+Array.prototype.last = function() {
+  return this[this.length - 1];
+}
+//
+
 module.exports = {
   UserError,
   BadRequestError,
