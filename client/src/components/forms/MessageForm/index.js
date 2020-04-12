@@ -1,11 +1,11 @@
 import React                   from 'react';
 import { Field, Form, Formik } from "formik";
 import { connect }             from "react-redux";
-import { emitMessage }         from "../../../api/ws/chatApi";
 import {
   createClearChatAction,
   createDeleteChatAction,
-  createLeaveChatRequestAction
+  createLeaveChatRequestAction,
+  createSendMessageRequestAction
 }                              from "../../../redux/actions";
 import { messageSchema }       from "../../../utils/validationSchemes";
 
@@ -13,7 +13,7 @@ const MessageForm = ( props ) => {
   const { currentChat, userId, className } = props;
 
   const handleSubmit = ( { message }, formikBag ) => {
-    emitMessage( currentChat, message, userId );
+    props.sendMessage( currentChat, message, userId );
     formikBag.resetForm()
   };
 
@@ -34,7 +34,7 @@ const MessageForm = ( props ) => {
               message: ''
             }}>
       {
-        (props) => (
+        ( props ) => (
           <Form className={className}>
             <div>
               <button onClick={handleDelete}>Delete chat</button>
@@ -60,11 +60,17 @@ const MessageForm = ( props ) => {
 
 
 const mapDispatchToProps = dispatch => ( {
-  leaveChat: ( currentChat, userId ) => ( dispatch(
-    createLeaveChatRequestAction( currentChat, userId ) ) ),
+  sendMessage: ( currentChat, message, userId ) =>
+    dispatch( createSendMessageRequestAction( currentChat, message, userId ) ),
+
+  leaveChat: ( currentChat, userId ) =>
+    dispatch( createLeaveChatRequestAction( currentChat, userId ) ),
+
   deleteChat: ( currentChat, userId ) =>
     dispatch( createDeleteChatAction( currentChat, userId ) ),
-  clearCurrentChat: () => ( dispatch( createClearChatAction() ) )
+
+  clearCurrentChat: () =>
+    dispatch( createClearChatAction() )
 } );
 
 

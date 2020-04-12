@@ -52,12 +52,17 @@ export const createLoadChatMessagesErrorAction = ( error ) => ( {
 } );
 
 //WS
-/*export const createGetMessageRequestAction = ( chatId, message, from ) => ( {
+export const createSendMessageRequestAction = ( currentChat, message, userId ) => ( {
  type: ACTION_TYPES.SEND_MESSAGE_REQUEST,
- message,
- chatId,
- from,
- } );*/
+  currentChat,
+  message,
+  userId
+ } );
+
+export const createSendMessageErrorAction = ( error ) => ( {
+  type: ACTION_TYPES.SEND_MESSAGE_ERROR,
+  error
+} );
 
 export const createGetMessageSuccessAction = ( data ) => ({
     type: ACTION_TYPES.SEND_MESSAGE_SUCCESS,

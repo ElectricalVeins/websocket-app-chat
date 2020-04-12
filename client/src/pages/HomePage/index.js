@@ -22,10 +22,6 @@ const HomePage = ( props ) => {
 
   useEffect( () => {
     props.loadChatList( auth.user.id );
-
-    chatSocket.on( 'new-message', ( message, chatId ) => {
-      props.getNotification( message, chatId )
-    } );
   }, [] );
 
   const handleEscape = ( event ) => {
@@ -59,9 +55,6 @@ const mapStateToProps = ( state ) => {
 
 const mapDispatchToProps = dispatch => ( {
   clearCurrentChat: () => ( dispatch( createClearChatAction() ) ),
-  getNotification: ( message, chatId ) => {
-    dispatch( createGetNotificationSuccessAction( message, chatId ) )
-  },
   loadChatList: ( data ) => {
     dispatch( createLoadUserChatListAction( data ) )
   },

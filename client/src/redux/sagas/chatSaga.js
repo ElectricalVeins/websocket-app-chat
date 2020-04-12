@@ -1,8 +1,8 @@
-import { put }             from 'redux-saga/effects';
-import * as actionCreator  from '../actions';
-import * as chatController from "../../api/http/chatController";
-import * as userController from "../../api/http/userController";
-import { emitLeaveRoom }   from "../../api/ws/chatApi";
+import { put }                        from 'redux-saga/effects';
+import * as actionCreator             from '../actions';
+import * as chatController            from "../../api/http/chatController";
+import * as userController            from "../../api/http/userController";
+import { emitLeaveRoom, emitMessage } from "../../api/ws/chatApi";
 
 export function* loadUserChatListSaga( { values } ) {
   try {
@@ -31,6 +31,17 @@ export function* loadAllChatsSaga() {
   }
 }
 
+export function* sendMessageSaga( currentChat, message, userId ) {
+  try {
+    yield emitMessage( {
+      currentChat,
+      message,
+      userId
+    } )
+  } catch ( e ) {
+    yield put( actionCreator.createSendMessageErrorAction( e.response ) )
+  }
+}
 
 export function* deleteChatSaga( { currentChat, userId } ) {
   try {
@@ -44,7 +55,7 @@ export function* deleteChatSaga( { currentChat, userId } ) {
 export function* leaveChatSaga( { currentChat, userId } ) {
   try {
     const { data } = yield chatController.leaveChatById( currentChat, userId );
-    yield emitLeaveRoom(currentChat)
+    yield emitLeaveRoom( currentChat )
     yield put( actionCreator.createLeaveChatSuccessAction( data ) )
   } catch ( e ) {
     yield put( actionCreator.createLeaveChatErrorAction( e.response ) )
@@ -54,7 +65,10 @@ export function* leaveChatSaga( { currentChat, userId } ) {
 
 export function* joinChatSaga( chatId, userId ) {
   try {
-    const { data } = yield chatController.joinUserToChatById( chatId, userId );
+    const { data } = yield chatController.joinUserToChatById( {
+      chatId,
+      userId
+    } );
     yield put( actionCreator.createJoinUserToChatSuccessAction( data ) )
   } catch ( e ) {
     yield put( actionCreator.createJoinUserToChatErrorAction( e.response ) )
@@ -63,7 +77,10 @@ export function* joinChatSaga( chatId, userId ) {
 
 export function* createChatSaga( chatName, userId ) {
   try {
-    const { data } = yield chatController.createChat( chatName, userId );
+    const { data } = yield chatController.createChat( {
+      chatName,
+      userId
+    } );
     yield put( actionCreator.createChatCreationSuccessAction( data ) )
   } catch ( e ) {
     yield put( actionCreator.createChatCreationErrorAction( e.response ) )

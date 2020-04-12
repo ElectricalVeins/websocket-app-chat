@@ -1,14 +1,7 @@
-import React, { useEffect }   from 'react';
-import { connect }            from "react-redux";
-import {
-  createDeleteNotificationAction,
-  createJoinUserToChatRequestAction,
-  createSelectChatAction
-}                             from "../../redux/actions";
-import { emitJoinRoom }       from "../../api/ws/chatApi";
-import { joinUserToChatById } from "../../api/http/chatController";
-import classNames             from 'classnames';
-import { LIST_ITEM_TYPE }     from '../../constants'
+import React, { useEffect }               from 'react';
+import { connect }                        from "react-redux";
+import { createDeleteNotificationAction } from "../../redux/actions";
+import classNames                         from 'classnames';
 
 const NotificationItem = ( props ) => {
   const {

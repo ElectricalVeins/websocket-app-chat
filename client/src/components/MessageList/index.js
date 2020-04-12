@@ -16,16 +16,6 @@ const MessageList = ( props ) => {
     currentChat,
   } = props;
 
-  useEffect( () => {
-    chatSocket.on( 'message', ( message, chatId ) => {
-      props.getMessage( {
-        ...message,
-        chatId
-      } )
-    } )
-  } );
-
-
   const chatIsSelected = () => {
     return chatMessages.map( ( msg ) => {
       return ( <MessageItem key={msg._id}
@@ -37,7 +27,6 @@ const MessageList = ( props ) => {
                             messageClassName={styles.messageItem}/> )
     } )
   };
-
 
   return (
     <div className={styles.messageListContainer}>
@@ -59,14 +48,8 @@ const MessageList = ( props ) => {
   );
 };
 
-
-const mapDispatchToProps = dispatch => ( {
-  getMessage: ( data ) =>
-    dispatch( createGetMessageSuccessAction( data ) ),
-} );
-
 const mapStateToProps = state => {
   return state.chatState;
 };
 
-export default connect( mapStateToProps, mapDispatchToProps )( MessageList );
+export default connect( mapStateToProps )( MessageList );

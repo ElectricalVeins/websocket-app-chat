@@ -1,14 +1,9 @@
-import React, { useEffect }   from 'react';
-import { connect }            from "react-redux";
+import React       from 'react';
+import { connect } from "react-redux";
 import {
-  createDeleteNotificationAction,
   createJoinUserToChatRequestAction,
-  createSelectChatAction
-}                             from "../../redux/actions";
-import { emitJoinRoom }       from "../../api/ws/chatApi";
-import { joinUserToChatById } from "../../api/http/chatController";
-import classNames             from 'classnames';
-import { LIST_ITEM_TYPE }     from '../../constants'
+}                  from "../../redux/actions";
+import classNames  from 'classnames';
 
 const ListItem = ( props ) => {
   const {
@@ -51,9 +46,9 @@ const mapDispatchToProps = ( dispatch ) => ( {
   joinUserToChat: ( chatId, userId ) => {
     dispatch( createJoinUserToChatRequestAction( chatId, userId ) )
   },
-/*  selectChat: ( id ) => {
-    dispatch( createSelectChatAction( id ) )
-  }*/
+  /*  selectChat: ( id ) => {
+   dispatch( createSelectChatAction( id ) )
+   }*/
 } );
 
 export default connect( mapStateToProps, mapDispatchToProps )( ListItem );
