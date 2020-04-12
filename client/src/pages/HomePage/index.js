@@ -6,11 +6,9 @@ import NotificationList     from "../../components/NotificationList";
 import { connect }          from "react-redux";
 import {
   createClearChatAction,
-  createGetNotificationSuccessAction,
   createLoadUserChatListAction,
 }                           from "../../redux/actions";
 import styles               from './HomePage.module.scss'
-import { chatSocket }       from "../../api/ws";
 import useWindowSize        from "../../utils/useWindowSize";
 import Header               from "../../components/Header";
 
@@ -32,7 +30,15 @@ const HomePage = ( props ) => {
 
   return (
     <>
-      <Header chatState={chatState} windowSizes={windowSizes} className={styles.header}>
+      <Header className={styles.header}>
+        {
+          ( windowSizes.width <= 800 ) && (
+            <>
+              <div style={{ textAlign: 'center' }}>My chats:</div>
+              <ChatList chatState={chatState}/>
+            </>
+          )
+        }
         <AllChatsList className={styles.allChats}/>
       </Header>
       <div className={styles.container}
